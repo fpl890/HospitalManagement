@@ -1,11 +1,24 @@
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
+enum Screen{
+	CALEN, LOGIN
+}
+
+/**
+ * @author Gavin
+ *
+ */
 public class Main {
+	//Total JPanels in app 
+	private JPanel login = new Login();
+	private JPanel calendar = new Calendar();
+	
 	static Main window = new Main();
-	private JFrame login;
-	private JFrame calendar;
+	private JFrame frame;
+	private JPanel current = login;
+	
 
 	/**
 	 * Launch the application.
@@ -14,7 +27,8 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {	
-					setLogin(true);
+					window = new Main();
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -22,31 +36,39 @@ public class Main {
 		});
 	}
 
+
 	/**
 	 * Create the application.
 	 */
 	public Main() {
-		initLogin();
-		initCalendar();
-	}
-
-	private void initLogin() {
-		login = new Login();
-		login.setBounds(100, 100, 450, 300);
-		login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setContentPane(current);
 	}
 	
-	private void initCalendar() {
-		calendar = new Calendar();
-		calendar.setBounds(100, 100, 450, 300);
-		calendar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	// Purpose: This method is called by some JPanel to swich to a different panel
+	// Input: member of the enum screen
+	// Output: nothing
+	public void setScreen(Screen screen) {
+		frame.remove(current);
+		current = getPanel(screen);
+		frame.setContentPane(current);
+		frame.validate();
+		frame.repaint();
 	}
 	
-	public static void setCalendar(Boolean set) {
-		window.calendar.setVisible(set);
-	}
-	
-	public static void setLogin(Boolean set) {
-		window.login.setVisible(set);
+	// Purpose: Helper function for setScreen
+	// Input: member of the enum screen
+	// Ouput: JPanel
+	private JPanel getPanel(Screen srn) {
+		switch (srn) {
+		case CALEN:
+			return calendar;	
+		case LOGIN:
+			return login;
+		default:
+			throw new IllegalArgumentException();
+		}
 	}
 }
