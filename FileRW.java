@@ -1,5 +1,3 @@
-package filerw;
-
 import java.io.*;
 
 
