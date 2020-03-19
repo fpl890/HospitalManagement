@@ -1,45 +1,41 @@
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.GridLayout;
 import javax.swing.JButton;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
+//import com.jgoodies.forms.layout.FormLayout;
+//import com.jgoodies.forms.layout.ColumnSpec;
+//import com.jgoodies.forms.layout.RowSpec;
+//import com.jgoodies.forms.layout.FormSpecs;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Calendar extends JPanel {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2054425670598766858L;
+
+	/**
 	 * Create the panel.
 	 */
-	public Calendar(JFrame frame) {
+	public Calendar() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{91, 97, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{134, 25, 37, 25, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{48, -3, 0, 0, 0, 0, 0, -1, 0, 22, 0};
+		gridBagLayout.rowHeights = new int[]{95, 25, 37, 25, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JButton btnNewButton = new JButton("1");
+	JButton btnNewButton = new JButton("1");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				Schedule panel = new Schedule(frame);
-				frame.setContentPane(panel);
-				frame.revalidate();
+				//Schedule panel = new Schedule(frame);
+				//frame.setContentPane(panel);
+				//frame.revalidate();
+				Main.window.setScreen(Screen.SCHED);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -270,4 +266,3 @@ public class Calendar extends JPanel {
 
 	}
 }
-

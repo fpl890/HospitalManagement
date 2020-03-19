@@ -1,4 +1,3 @@
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -11,9 +10,14 @@ import java.awt.Font;
 public class Schedule extends JPanel {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3769564808489547540L;
+
+	/**
 	 * Create the panel.
 	 */
-	public Schedule(JFrame frame) {
+	public Schedule() {
 		
 		JLabel label = new JLabel("");
 		

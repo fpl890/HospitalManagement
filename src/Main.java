@@ -3,7 +3,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 enum Screen{
-	CALEN, LOGIN
+	CALEN, LOGIN, SCHED, REGIS
 }
 
 /**
@@ -14,6 +14,8 @@ public class Main {
 	//Total JPanels in app 
 	private JPanel login = new Login();
 	private JPanel calendar = new Calendar();
+	private JPanel schedule = new Schedule();
+	private JPanel register = new Register();
 	
 	static Main window = new Main();
 	private JFrame frame;
@@ -42,7 +44,7 @@ public class Main {
 	 */
 	public Main() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(500, 500, 500, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(current);
 	}
@@ -58,6 +60,7 @@ public class Main {
 		frame.repaint();
 	}
 	
+	
 	// Purpose: Helper function for setScreen
 	// Input: member of the enum screen
 	// Ouput: JPanel
@@ -67,6 +70,10 @@ public class Main {
 			return calendar;	
 		case LOGIN:
 			return login;
+		case SCHED:
+			return schedule;
+		case REGIS:
+			return register;
 		default:
 			throw new IllegalArgumentException();
 		}

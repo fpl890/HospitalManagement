@@ -39,7 +39,7 @@ public class MainWindow extends JFrame {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 760, 520);
 		frame.setResizable(false);
-		Calendar pane = new Calendar(frame);
+		Calendar pane = new Calendar();
 		frame.setContentPane(pane);
 		frame.revalidate();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
