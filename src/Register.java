@@ -6,6 +6,7 @@ import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class Register extends JPanel {
@@ -48,6 +49,17 @@ public class Register extends JPanel {
 		
 		JButton btnNewButton = new JButton("Create Account");
 		btnNewButton.setBounds(201, 260, 120, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Person.writeInfo(textField.getText(), new String(passwordField.getPassword()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Main.window.setScreen(Screen.LOGIN);
+			}
+		});
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancel");

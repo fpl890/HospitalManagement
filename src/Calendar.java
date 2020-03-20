@@ -22,8 +22,8 @@ public class Calendar extends JPanel {
 	 */
 	public Calendar() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{48, -3, 0, 0, 0, 0, 0, -1, 0, 22, 0};
-		gridBagLayout.rowHeights = new int[]{95, 25, 37, 25, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{91, 97, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{134, 25, 37, 25, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
@@ -262,6 +262,18 @@ public class Calendar extends JPanel {
 		gbc_btnNewButton_6.gridx = 5;
 		gbc_btnNewButton_6.gridy = 6;
 		add(btnNewButton_6, gbc_btnNewButton_6);
+		
+		
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				//Schedule panel = new Schedule(frame);
+				//frame.setContentPane(panel);	
+				//frame.revalidate();
+				Main.window.setScreen(Screen.SCHED);
+			}
+		});
+		
 		
 
 	}
