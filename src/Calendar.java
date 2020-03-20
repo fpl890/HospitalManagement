@@ -263,6 +263,18 @@ public class Calendar extends JPanel {
 		gbc_btnNewButton_6.gridy = 6;
 		add(btnNewButton_6, gbc_btnNewButton_6);
 		
+		
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				//Schedule panel = new Schedule(frame);
+				//frame.setContentPane(panel);	
+				//frame.revalidate();
+				Main.window.setScreen(Screen.SCHED);
+			}
+		});
+		
+		
 
 	}
 }
