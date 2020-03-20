@@ -3,7 +3,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 enum Screen{
-	CALEN, LOGIN, SCHED
+	CALEN, LOGIN, SCHED, REGIS
 }
 
 /**
@@ -15,6 +15,7 @@ public class Main {
 	private JPanel login = new Login();
 	private JPanel calendar = new Calendar();
 	private JPanel schedule = new Schedule();
+	private JPanel register = new Register();
 	
 	static Main window = new Main();
 	private JFrame frame;
@@ -59,6 +60,7 @@ public class Main {
 		frame.repaint();
 	}
 	
+	
 	// Purpose: Helper function for setScreen
 	// Input: member of the enum screen
 	// Ouput: JPanel
@@ -70,6 +72,8 @@ public class Main {
 			return login;
 		case SCHED:
 			return schedule;
+		case REGIS:
+			return register;
 		default:
 			throw new IllegalArgumentException();
 		}
