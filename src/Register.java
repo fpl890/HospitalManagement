@@ -6,8 +6,8 @@ import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
 
 public class Register extends JPanel {
 	/**
@@ -26,31 +26,40 @@ public class Register extends JPanel {
 		setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(127, 166, 192, 20);
+		textField.setBounds(165, 171, 192, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(127, 224, 192, 20);
+		passwordField.setBounds(165, 229, 192, 20);
 		add(passwordField);
 		
 		JLabel lblNewLabel = new JLabel("Username");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(181, 141, 84, 14);
+		lblNewLabel.setBounds(237, 146, 48, 14);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(182, 197, 82, 14);
+		lblNewLabel_1.setBounds(239, 202, 46, 14);
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Create Patient Account");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel_2.setBounds(127, 34, 192, 62);
+		lblNewLabel_2.setBounds(165, 39, 192, 62);
 		add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Create Account");
-		btnNewButton.setBounds(163, 255, 120, 23);
+		btnNewButton.setBounds(201, 260, 120, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Person.writeInfo(textField.getText(), new String(passwordField.getPassword()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Main.window.setScreen(Screen.LOGIN);
+			}
+		});
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancel");
@@ -59,7 +68,7 @@ public class Register extends JPanel {
 				Main.window.setScreen(Screen.LOGIN);
 			}
 		});
-		btnNewButton_1.setBounds(179, 289, 89, 23);
+		btnNewButton_1.setBounds(217, 294, 89, 23);
 		add(btnNewButton_1);
 
 	}
