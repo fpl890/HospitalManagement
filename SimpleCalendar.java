@@ -26,7 +26,9 @@ public class SimpleCalendar{
         catch (UnsupportedLookAndFeelException e) {}
         
         
-        frmMain = new JFrame ("Gestionnaire de clients"); 
+
+        frmMain = new JFrame ("Calander");  
+
         frmMain.setSize(330, 375); 
         pane = frmMain.getContentPane(); 
         pane.setLayout(null); 
@@ -36,8 +38,8 @@ public class SimpleCalendar{
         lblMonth = new JLabel ("January");
         lblYear = new JLabel ("Change year:");
         cmbYear = new JComboBox();
-        btnPrev = new JButton ("&lt;&lt;");
-        btnNext = new JButton ("&gt;&gt;");
+        btnPrev = new JButton ("<<");
+        btnNext = new JButton (">>");
         mtblCalendar = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
         tblCalendar = new JTable(mtblCalendar);
         stblCalendar = new JScrollPane(tblCalendar);
