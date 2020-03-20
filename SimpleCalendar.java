@@ -26,7 +26,7 @@ public class SimpleCalendar{
         catch (UnsupportedLookAndFeelException e) {}
         
         
-        frmMain = new JFrame ("Gestionnaire de clients");  
+        frmMain = new JFrame ("Gestionnaire de clients"); 
         frmMain.setSize(330, 375); 
         pane = frmMain.getContentPane(); 
         pane.setLayout(null); 
