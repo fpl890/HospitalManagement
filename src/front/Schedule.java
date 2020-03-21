@@ -1,3 +1,4 @@
+package front;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -5,6 +6,10 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import back.Doctor;
+import back.Main;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -121,7 +126,7 @@ public class Schedule extends JPanel {
 				shift5.setVisible(false);
 				dailySchedule.clear();
 
-				Main.window.setScreen(Screen.CALEN);
+				Main.window.setScreen(Main.Screen.CALEN);
 
 			}
 		});

@@ -1,7 +1,8 @@
+package front;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+//import java.io.BufferedWriter;
+//import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -11,6 +12,10 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import javax.swing.SwingConstants;
+
+import back.Main;
+import back.Person;
+
 
 // https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ButtonDemoProject/src/components/ButtonDemo.java
 public class Login extends JPanel implements ActionListener {
@@ -57,7 +62,7 @@ public class Login extends JPanel implements ActionListener {
 		btnNewButton.setBounds(151, 252, 160, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.window.setScreen(Screen.REGIS);
+				Main.window.setScreen(Main.Screen.REGIS);
 			}
 		});
 		add(btnNewButton);
@@ -77,9 +82,9 @@ public class Login extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if("enable".equals(e.getActionCommand())) {
 			try {
-				BufferedWriter writer = new BufferedWriter(new FileWriter("record.txt", true));
+				//BufferedWriter writer = new BufferedWriter(new FileWriter("record.txt", true));
 				if(Person.validUser(txtUsername.getText(), txtPassword.getText())) {
-					Main.window.setScreen(Screen.CALEN);
+					Main.window.setScreen(Main.Screen.CALEN);
 				}else {
 					JOptionPane.showMessageDialog(this,
 				            "Invalid password. Try again.",

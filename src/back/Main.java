@@ -1,10 +1,14 @@
+package back;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-enum Screen{
-	CALEN, LOGIN, SCHED, REGIS
-}
+import front.Login;
+import front.Register;
+import front.Schedule;
+import front.SimpleCalendar;
+
+
 
 /**
  * @author Gavin
@@ -17,11 +21,14 @@ public class Main {
 	private JPanel schedule = new Schedule();
 	private JPanel register = new Register();
 	
-	static Main window = new Main();
+	public static Main window = new Main();
 	private JFrame frame;
 	private JPanel current = login;
 	
-
+	public enum Screen{
+		CALEN, LOGIN, SCHED, REGIS
+	}
+	
 	/**
 	 * Launch the application.
 	 */

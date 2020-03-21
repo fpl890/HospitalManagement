@@ -1,15 +1,21 @@
+package front;
 import javax.swing.*;
-import javax.swing.event.*;
+//import javax.swing.event.*;
 import javax.swing.table.*;
+
+import back.Main;
+
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
 public class SimpleCalendar extends JPanel{
-     JLabel lblMonth, lblYear;
+	private static final long serialVersionUID = 1L;
+	JLabel lblMonth, lblYear;
      JButton btnPrev, btnNext;
      JTable tblCalendar;
-     JComboBox cmbYear;
+     JComboBox<String> cmbYear;
      JFrame frmMain;
      
      DefaultTableModel mtblCalendar;
@@ -37,10 +43,15 @@ public class SimpleCalendar extends JPanel{
         //controling
         lblMonth = new JLabel ("January");
         lblYear = new JLabel ("Change year:");
-        cmbYear = new JComboBox();
+        cmbYear = new JComboBox<String>();
         btnPrev = new JButton ("<<");
         btnNext = new JButton (">>");
-        mtblCalendar = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
+        
+        mtblCalendar = new DefaultTableModel(){
+			private static final long serialVersionUID = 1L;
+			public boolean isCellEditable(int rowIndex, int mColIndex){return false;}
+		};
+		
         tblCalendar = new JTable(mtblCalendar);
         stblCalendar = new JScrollPane(tblCalendar);
         
@@ -50,10 +61,10 @@ public class SimpleCalendar extends JPanel{
         	
         	public void mouseClicked(java.awt.event.MouseEvent evt) {		
         		
-                int row = tblCalendar.rowAtPoint(evt.getPoint());
-                int col = tblCalendar.columnAtPoint(evt.getPoint());
+               // int row = tblCalendar.rowAtPoint(evt.getPoint());
+              //  int col = tblCalendar.columnAtPoint(evt.getPoint());
                
-                Main.window.setScreen(Screen.SCHED);	
+                Main.window.setScreen(Main.Screen.SCHED);	
                 
                }
         });
@@ -153,7 +164,7 @@ public class SimpleCalendar extends JPanel{
         
         //Draw the Calander
         for (int i=1; i<=nod; i++){
-            int row = new Integer((i+som-2)/7);
+            int row = (i+som-2)/7; //new Integer((i+som-2)/7);
             int column  =  (i+som-2)%7;
             mtblCalendar.setValueAt(i, row, column);
         }
@@ -163,7 +174,10 @@ public class SimpleCalendar extends JPanel{
     }
     
      class tblCalendarRenderer extends DefaultTableCellRenderer{
-        public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
+
+		private static final long serialVersionUID = 1L;
+
+		public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
             super.getTableCellRendererComponent(table, value, selected, focused, row, column);
             if (column == 0 || column == 6){ 
                 setBackground(new Color(255, 220, 220));

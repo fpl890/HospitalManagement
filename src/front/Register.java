@@ -1,5 +1,11 @@
+package front;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import back.Main;
+import back.Person;
+
+
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import java.awt.SystemColor;
@@ -57,7 +63,7 @@ public class Register extends JPanel {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				Main.window.setScreen(Screen.LOGIN);
+				Main.window.setScreen(Main.Screen.LOGIN);
 			}
 		});
 		add(btnNewButton);
@@ -65,7 +71,7 @@ public class Register extends JPanel {
 		JButton btnNewButton_1 = new JButton("Cancel");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.window.setScreen(Screen.LOGIN);
+				Main.window.setScreen(Main.Screen.LOGIN);
 			}
 		});
 		btnNewButton_1.setBounds(217, 294, 89, 23);

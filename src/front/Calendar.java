@@ -1,4 +1,9 @@
+package front;
 import javax.swing.JPanel;
+
+import back.Main;
+
+
 import javax.swing.JButton;
 //import com.jgoodies.forms.layout.FormLayout;
 //import com.jgoodies.forms.layout.ColumnSpec;
@@ -35,7 +40,7 @@ public class Calendar extends JPanel {
 				//Schedule panel = new Schedule(frame);
 				//frame.setContentPane(panel);
 				//frame.revalidate();
-				Main.window.setScreen(Screen.SCHED);
+				Main.window.setScreen(Main.Screen.SCHED);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -270,7 +275,7 @@ public class Calendar extends JPanel {
 				//Schedule panel = new Schedule(frame);
 				//frame.setContentPane(panel);	
 				//frame.revalidate();
-				Main.window.setScreen(Screen.SCHED);
+				Main.window.setScreen(Main.Screen.SCHED);
 			}
 		});
 		
