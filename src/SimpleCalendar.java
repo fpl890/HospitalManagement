@@ -34,7 +34,7 @@ public class SimpleCalendar extends JPanel{
  //       pane.setLayout(null); 
  //       frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         
-       
+        //controling
         lblMonth = new JLabel ("January");
         lblYear = new JLabel ("Change year:");
         cmbYear = new JComboBox();
@@ -86,7 +86,7 @@ public class SimpleCalendar extends JPanel{
      
       
         
-       
+        //Get month and year
         GregorianCalendar cal = new GregorianCalendar();
         realDay = cal.get(GregorianCalendar.DAY_OF_MONTH);
         realMonth = cal.get(GregorianCalendar.MONTH);
@@ -94,7 +94,7 @@ public class SimpleCalendar extends JPanel{
         currentMonth = realMonth; 
         currentYear = realYear;
         
-     
+        //The header
         String[] headers = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}; 
         for (int i=0; i<7; i++){
             mtblCalendar.addColumn(headers[i]);
@@ -139,19 +139,19 @@ public class SimpleCalendar extends JPanel{
         lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 180, 25); 
         cmbYear.setSelectedItem(String.valueOf(year)); 
         
-       
+        //Create table
         for (int i=0; i<6; i++){
             for (int j=0; j<7; j++){
                 mtblCalendar.setValueAt(null, i, j);
             }
         }
         
-        
+        //get the first day of month and number of days
         GregorianCalendar cal = new GregorianCalendar(year, month, 1);
         nod = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
         som = cal.get(GregorianCalendar.DAY_OF_WEEK);
         
-        
+        //Draw the Calander
         for (int i=1; i<=nod; i++){
             int row = new Integer((i+som-2)/7);
             int column  =  (i+som-2)%7;
@@ -217,3 +217,6 @@ public class SimpleCalendar extends JPanel{
         }
     }
 }
+
+
+//Barebone model form the javahungry.blogspot.com
