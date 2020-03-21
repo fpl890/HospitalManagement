@@ -13,7 +13,7 @@ enum Screen{
 public class Main {
 	//Total JPanels in app 
 	private JPanel login = new Login();
-	private JPanel calendar = new Calendar();
+	private JPanel calendar = new SimpleCalendar();
 	private JPanel schedule = new Schedule();
 	private JPanel register = new Register();
 	

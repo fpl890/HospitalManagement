@@ -5,19 +5,19 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class SimpleCalendar{
-    static JLabel lblMonth, lblYear;
-    static JButton btnPrev, btnNext;
-    static JTable tblCalendar;
-    static JComboBox cmbYear;
-    static JFrame frmMain;
-    static Container pane;
-    static DefaultTableModel mtblCalendar;
-    static JScrollPane stblCalendar;
-    static JPanel pnlCalendar;
-    static int realYear, realMonth, realDay, currentYear, currentMonth;
+public class SimpleCalendar extends JPanel{
+     JLabel lblMonth, lblYear;
+     JButton btnPrev, btnNext;
+     JTable tblCalendar;
+     JComboBox cmbYear;
+     JFrame frmMain;
+     
+     DefaultTableModel mtblCalendar;
+     JScrollPane stblCalendar;
     
-    public static void main (String args[]){
+     int realYear, realMonth, realDay, currentYear, currentMonth;
+    
+    public SimpleCalendar (){
   
         try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
         catch (ClassNotFoundException e) {}
@@ -27,12 +27,12 @@ public class SimpleCalendar{
         
         
 
-        frmMain = new JFrame ("Calander");  
+ //       frmMain = new JFrame ("Calander");  
 
-        frmMain.setSize(330, 375); 
-        pane = frmMain.getContentPane(); 
-        pane.setLayout(null); 
-        frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+//        frmMain.setSize(330, 375); 
+//        pane = frmMain.getContentPane(); 
+ //       pane.setLayout(null); 
+ //       frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         
        
         lblMonth = new JLabel ("January");
@@ -43,10 +43,22 @@ public class SimpleCalendar{
         mtblCalendar = new DefaultTableModel(){public boolean isCellEditable(int rowIndex, int mColIndex){return false;}};
         tblCalendar = new JTable(mtblCalendar);
         stblCalendar = new JScrollPane(tblCalendar);
-        pnlCalendar = new JPanel(null);
         
-       
-        pnlCalendar.setBorder(BorderFactory.createTitledBorder("Calendar"));
+        //https://stackoverflow.com/questions/7350893/click-event-on-jtable-java
+        tblCalendar.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override
+        	
+        	public void mouseClicked(java.awt.event.MouseEvent evt) {		
+        		
+                int row = tblCalendar.rowAtPoint(evt.getPoint());
+                int col = tblCalendar.columnAtPoint(evt.getPoint());
+               
+                Main.window.setScreen(Screen.SCHED);	
+                
+               }
+        });
+      
+        this.setBorder(BorderFactory.createTitledBorder("Calendar"));
         
         
         btnPrev.addActionListener(new btnPrev_Action());
@@ -54,16 +66,16 @@ public class SimpleCalendar{
         cmbYear.addActionListener(new cmbYear_Action());
         
        
-        pane.add(pnlCalendar);
-        pnlCalendar.add(lblMonth);
-        pnlCalendar.add(lblYear);
-        pnlCalendar.add(cmbYear);
-        pnlCalendar.add(btnPrev);
-        pnlCalendar.add(btnNext);
-        pnlCalendar.add(stblCalendar);
+     
+        this.add(lblMonth);
+        this.add(lblYear);
+        this.add(cmbYear);
+        this.add(btnPrev);
+        this.add(btnNext);
+        this.add(stblCalendar);
         
     
-        pnlCalendar.setBounds(0, 0, 320, 335);
+        this.setBounds(0, 0, 320, 335);
         lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 100, 25);
         lblYear.setBounds(10, 305, 80, 20);
         cmbYear.setBounds(230, 305, 80, 20);
@@ -72,8 +84,7 @@ public class SimpleCalendar{
         stblCalendar.setBounds(10, 50, 300, 250);
         
      
-        frmMain.setResizable(false);
-        frmMain.setVisible(true);
+      
         
        
         GregorianCalendar cal = new GregorianCalendar();
@@ -114,7 +125,7 @@ public class SimpleCalendar{
         refreshCalendar (realMonth, realYear); 
     }
     
-    public static void refreshCalendar(int month, int year){
+    public void refreshCalendar(int month, int year){
         
         String[] months =  {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         int nod, som; 
@@ -151,7 +162,7 @@ public class SimpleCalendar{
         tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
     }
     
-    static class tblCalendarRenderer extends DefaultTableCellRenderer{
+     class tblCalendarRenderer extends DefaultTableCellRenderer{
         public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
             super.getTableCellRendererComponent(table, value, selected, focused, row, column);
             if (column == 0 || column == 6){ 
@@ -171,7 +182,7 @@ public class SimpleCalendar{
         }
     }
     
-    static class btnPrev_Action implements ActionListener{
+     class btnPrev_Action implements ActionListener{
         public void actionPerformed (ActionEvent e){
             if (currentMonth == 0){
                 currentMonth = 11;
@@ -183,7 +194,7 @@ public class SimpleCalendar{
             refreshCalendar(currentMonth, currentYear);
         }
     }
-    static class btnNext_Action implements ActionListener{
+     class btnNext_Action implements ActionListener{
         public void actionPerformed (ActionEvent e){
             if (currentMonth == 11){ 
                 currentMonth = 0;
@@ -195,7 +206,8 @@ public class SimpleCalendar{
             refreshCalendar(currentMonth, currentYear);
         }
     }
-    static class cmbYear_Action implements ActionListener{
+     
+     class cmbYear_Action implements ActionListener{
         public void actionPerformed (ActionEvent e){
             if (cmbYear.getSelectedItem() != null){
                 String b = cmbYear.getSelectedItem().toString();

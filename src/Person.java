@@ -28,11 +28,14 @@ public class Person {
 
 		while (username != null) {
 			if (username.equals(name)) {
+				reader.close();
 				return reader.readLine();
+				
 			}
 			reader.readLine();
 			username = reader.readLine();
 		}
+		reader.close();
 		return " ";
 	}
 
@@ -45,14 +48,17 @@ public class Person {
 
 			if (username.equals(name)) {
 				if (reader.readLine().equals(password)) {
+					reader.close();
 					return true;
 				}else {
+					reader.close();
 					return false;
 				}
 			}
 			reader.readLine();
 			username = reader.readLine();
 		}
+		reader.close();
 		return false;
 	} 
 

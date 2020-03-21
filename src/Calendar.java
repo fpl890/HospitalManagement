@@ -20,7 +20,7 @@ public class Calendar extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Calendar() {
+	public Calendar() {  
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{91, 97, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{134, 25, 37, 25, 0, 0, 0, 0, 0};
