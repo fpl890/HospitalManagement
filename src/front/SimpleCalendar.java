@@ -33,8 +33,8 @@ public class SimpleCalendar extends JPanel{
         
         
 
- //       frmMain = new JFrame ("Calander");  
-
+ //       frmMain = new JFrame ("Simple Calander");  
+//        
 //        frmMain.setSize(330, 375); 
 //        pane = frmMain.getContentPane(); 
  //       pane.setLayout(null); 
