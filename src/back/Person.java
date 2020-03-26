@@ -2,9 +2,18 @@ package back;
 import java.io.*;
 
 
+/**
+ * @author 
+ *
+ */
 public class Person {
 
 
+	/**
+	 * @param name
+	 * @param password
+	 * @throws IOException
+	 */
 	public static void writeInfo(String name, String password) throws IOException{
 		BufferedWriter writer = new BufferedWriter(new FileWriter("./dat/record.txt", true));
 		writer.write(name + "\n");
@@ -15,6 +24,10 @@ public class Person {
 
 
 
+	/** Is this function used??
+	 * @return
+	 * @throws IOException
+	 */
 	public static String fetchName() throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader("./dat/record.txt"));
 		String name = reader.readLine();
@@ -23,6 +36,11 @@ public class Person {
 	}
 
 
+	/**
+	 * @param name
+	 * @return
+	 * @throws IOException
+	 */
 	public static String fetchPassword(String name) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader("./dat/record.txt"));
 		String username = reader.readLine();
@@ -42,6 +60,12 @@ public class Person {
 	}
 
 
+	/**
+	 * @param name
+	 * @param password
+	 * @return
+	 * @throws IOException
+	 */
 	public static boolean validUser(String name, String password) throws IOException{
 		BufferedReader reader = new BufferedReader(new FileReader("./dat/record.txt"));
 

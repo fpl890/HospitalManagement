@@ -9,12 +9,13 @@ import front.Schedule;
 import front.SimpleCalendar;
 
 
-
 /**
+ * The main method both launches the app and handles switching screens within the app
  * @author Gavin
  *
  */
 public class Main {
+	
 	//Total JPanels in app 
 	private JPanel login = new Login();
 	private JPanel calendar = new SimpleCalendar();
@@ -25,6 +26,9 @@ public class Main {
 	private JFrame frame;
 	private JPanel current = login;
 	
+	/**
+	 * This enum allows encapsulation of all JPanels within Main
+	 */
 	public enum Screen{
 		CALEN, LOGIN, SCHED, REGIS
 	}
@@ -47,7 +51,7 @@ public class Main {
 
 
 	/**
-	 * Create the application.
+	 * Create and initialize the application.
 	 */
 	public Main() {
 		frame = new JFrame();
@@ -56,9 +60,11 @@ public class Main {
 		frame.setContentPane(current);
 	}
 	
-	// Purpose: This method is called by some JPanel to swich to a different panel
-	// Input: member of the enum screen
-	// Output: nothing
+	
+	/**
+	 * Purpose: This method is called by some JPanel to swich to a different panel
+	 * @param screen: member of the enum screen
+	 */
 	public void setScreen(Screen screen) {
 		frame.remove(current);
 		current = getPanel(screen);
@@ -67,10 +73,12 @@ public class Main {
 		frame.repaint();
 	}
 	
-	
-	// Purpose: Helper function for setScreen
-	// Input: member of the enum screen
-	// Ouput: JPanel
+
+	/**
+	 * Helper function for setScreen which "coverts" the enum name to a JPanel
+	 * @param srn: member of the enum Screen
+	 * @return appropriate JPanel
+	 */
 	private JPanel getPanel(Screen srn) {
 		switch (srn) {
 		case CALEN:

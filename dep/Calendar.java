@@ -17,14 +17,13 @@ import java.awt.event.MouseEvent;
 
 public class Calendar extends JPanel {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -2054425670598766858L;
 
 	/**
 	 * Create the panel.
 	 */
+
 	public Calendar() {  
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{91, 97, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -268,13 +267,12 @@ public class Calendar extends JPanel {
 		gbc_btnNewButton_6.gridy = 6;
 		add(btnNewButton_6, gbc_btnNewButton_6);
 		
-		
+		/**
+		 * 
+		 */
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				//Schedule panel = new Schedule(frame);
-				//frame.setContentPane(panel);	
-				//frame.revalidate();
 				Main.window.setScreen(Main.Screen.SCHED);
 			}
 		});

@@ -16,8 +16,12 @@ import javax.swing.SwingConstants;
 import back.Main;
 import back.Person;
 
-
 // https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ButtonDemoProject/src/components/ButtonDemo.java
+
+/**
+ * @author Gavin
+ *
+ */
 public class Login extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	protected JButton btnCalendar;
@@ -34,8 +38,6 @@ public class Login extends JPanel implements ActionListener {
 	public Login() {
 			setLayout(null);
 		
-			
-			
 			JLabel label = new JLabel("Login");
 			label.setFont(new Font("Tahoma", Font.BOLD, 16));
 			label.setBounds(209, 20, 44, 20);
@@ -78,6 +80,9 @@ public class Login extends JPanel implements ActionListener {
 		add(lblPassword);
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if("enable".equals(e.getActionCommand())) {

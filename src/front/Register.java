@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
+
 
 public class Register extends JPanel {
 	/**
@@ -32,29 +34,29 @@ public class Register extends JPanel {
 		setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(165, 171, 192, 20);
+		textField.setBounds(125, 109, 192, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(165, 229, 192, 20);
+		passwordField.setBounds(125, 167, 192, 20);
 		add(passwordField);
 		
 		JLabel lblNewLabel = new JLabel("Username");
-		lblNewLabel.setBounds(237, 146, 48, 14);
+		lblNewLabel.setBounds(197, 84, 48, 14);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(239, 202, 46, 14);
+		lblNewLabel_1.setBounds(198, 140, 46, 14);
 		add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Create Patient Account");
+		JLabel lblNewLabel_2 = new JLabel("Create Account");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel_2.setBounds(165, 39, 192, 62);
+		lblNewLabel_2.setBounds(157, 11, 130, 62);
 		add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Create Account");
-		btnNewButton.setBounds(201, 260, 120, 23);
+		btnNewButton.setBounds(161, 238, 120, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -74,8 +76,16 @@ public class Register extends JPanel {
 				Main.window.setScreen(Main.Screen.LOGIN);
 			}
 		});
-		btnNewButton_1.setBounds(217, 294, 89, 23);
+		btnNewButton_1.setBounds(177, 272, 89, 23);
 		add(btnNewButton_1);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Patient");
+		rdbtnNewRadioButton.setBounds(135, 194, 109, 23);
+		add(rdbtnNewRadioButton);
+		
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Doctor");
+		rdbtnNewRadioButton_1.setBounds(246, 194, 109, 23);
+		add(rdbtnNewRadioButton_1);
 
 	}
 }
