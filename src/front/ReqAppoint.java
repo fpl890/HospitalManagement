@@ -123,14 +123,20 @@ public class ReqAppoint extends JPanel implements ActionListener{
 		JLabel date = new JLabel ( "Date: " +a.getDay() + "/"+ a.getMonth()+ "/"+a.getYear());
 		JLabel time  = new JLabel("From: " + a.getsHour() + " to " +a.geteHour());
 		JButton decline  = new JButton("Decline");
-		decline.setActionCommand(Integer.toString(ind));
+		decline.setActionCommand("d,"+Integer.toString(ind));
 		decline.addActionListener(this);
+		
+		JButton accept  = new JButton("accept");
+		accept.setActionCommand("a,"+Integer.toString(ind));
+		accept.addActionListener(this);
+		
 		vbox.add(Box.createRigidArea(new Dimension(0,5)));
 		vbox.add(nm);
 		
 		vbox.add(date);
 		vbox.add(time);
 		vbox.add(decline);
+		vbox.add(accept);
 		vbox.add(Box.createRigidArea(new Dimension(0,5)));
 		
 
@@ -148,7 +154,20 @@ public class ReqAppoint extends JPanel implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-	    appoints.remove(Integer.parseInt(e.getActionCommand()));
+		
+		String cmd =  e.getActionCommand().split(",")[0];
+		int ind =  Integer.parseInt(e.getActionCommand().split(",")[1]);	
+		
+		if(cmd.equals("d")) { //decline appointment
+			 appoints.remove(ind);
+		}
+		
+		else if(cmd.equals("a")) { //Accept
+			appoints.remove(ind);
+			//something
+		}
+			
+	   
 	    refreshList();
 		this.validate();
 		this.repaint();
