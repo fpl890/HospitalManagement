@@ -66,6 +66,7 @@ public class DocPanel extends JPanel implements ActionListener {
 
 	}
 	
+	
 	public void actionPerformed(ActionEvent e) {
 	
 	    if(e.getActionCommand().equals("calen")) {
@@ -75,6 +76,7 @@ public class DocPanel extends JPanel implements ActionListener {
 	    }
 	    else if(e.getActionCommand().equals("apnt")) {
 	    	Main.window.setScreen(Main.Screen.REQAP);
+	    	
 	    }
 	    else if (e.getActionCommand().equals("pati")) {
 	    	Main.window.setScreen(Main.Screen.PATDA);

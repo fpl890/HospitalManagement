@@ -17,6 +17,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import back.Appoint;
+import back.Doctor;
 
 import javax.swing.JTable;
 import com.jgoodies.forms.layout.FormSpecs;
@@ -32,6 +33,7 @@ import java.awt.Font;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ReqAppoint extends JPanel implements ActionListener{
@@ -55,13 +57,23 @@ public class ReqAppoint extends JPanel implements ActionListener{
 		JScrollPane scrollPane = new JScrollPane(verticalBox);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		for(int i=0; i<10; i++) {
-			Appoint hello = new Appoint("gavin guinn", 	2020, 10, 12, 11, 12);
-			Appoint goodby = new Appoint("ravin tuinn", 	2020, 13, 2, 11, 12);
-			appoints.add(hello);
-			appoints.add(goodby);
+		Doctor doc = new Doctor();
+		try {
+			doc = new Doctor(Login.currentUser, "cardiology");
+			doc.generateAppointments();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
+		for(Appoint appt:doc.getAppointments()) {
+				/*Appoint hello = new Appoint("Firoz","gavin guinn", 	2020, 10, 12, 11, 12);
+				Appoint goodby = new Appoint("Firoz", "ravin tuinn", 	2020, 13, 2, 11, 12);
+				appoints.add(hello);
+				appoints.add(goodby);*/
+				appoints.add(appt);
+		}
+
 		refreshList();
 		
 		
@@ -119,8 +131,8 @@ public class ReqAppoint extends JPanel implements ActionListener{
 		vbox.setAlignmentX(LEFT_ALIGNMENT);
 		vbox.setMinimumSize(new Dimension(100, 50) );
 		interHbox.setBorder(BorderFactory.createLineBorder(Color.black));
-		JLabel nm = new JLabel("Name: "+a.getName());
-		JLabel date = new JLabel ( "Date: " +a.getDay() + "/"+ a.getMonth()+ "/"+a.getYear());
+		JLabel nm = new JLabel("Name: "+a.getpName());
+		JLabel date = new JLabel ( "Date: " +a.getMonth() + "/"+ a.getDay()+ "/"+a.getYear());
 		JLabel time  = new JLabel("From: " + a.getsHour() + " to " +a.geteHour());
 		JButton decline  = new JButton("Decline");
 		decline.setActionCommand("d,"+Integer.toString(ind));

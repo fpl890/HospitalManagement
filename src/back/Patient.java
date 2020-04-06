@@ -14,6 +14,7 @@ public class Patient extends Person {
 	double weight;
 
 	ArrayList<String> listOfAppointments = new ArrayList<String>();
+<<<<<<< HEAD
 	
 	Patient(String id, String name, String birthday, String sex, String preExistCon, int height, double weight) {
 		this.id = id;
@@ -24,6 +25,8 @@ public class Patient extends Person {
 		this.height = height;
 		this.weight = weight;
 	}
+=======
+>>>>>>> Firoz
 
 	public String getId() {
 		return id;
@@ -88,6 +91,7 @@ public class Patient extends Person {
 	public void setListOfAppointments(ArrayList<String> listOfAppointments) {
 		this.listOfAppointments = listOfAppointments;
 	}
+<<<<<<< HEAD
 	
 	
 	/**
@@ -167,11 +171,32 @@ public class Patient extends Person {
 	 * @throws IOException
 	 */
 	public static String getPatientSex(String id) throws IOException {
+=======
+
+	public static void writeInfo(String id, String name, String birthday, String sex, int height, double weight,
+			String PEC, ArrayList<String> LOA) throws IOException {
+		BufferedWriter writer = new BufferedWriter(new FileWriter("./dat/patientInfo.txt"));
+		writer.write(id + "\n");
+		writer.write(LOA + "\n");
+		writer.write(name + "\n");
+		writer.write(birthday + "\n");
+		writer.write(sex + "\n");
+		writer.write(height + "\n");
+		writer.write(weight + "\n");
+		writer.write(PEC + "\n");
+	}
+
+	/*
+	 * IS THIS NEEDED ONLY NEED TO READ LISTOFAPPOINTMENTS
+	 */
+	public static String getAppointments(String id) throws IOException {
+>>>>>>> Firoz
 		BufferedReader reader = new BufferedReader(new FileReader("./dat/patientInfo.txt"));
 		String patientID = reader.readLine();
 		
 		while(patientID != null) {
 			if (patientID == id) {
+<<<<<<< HEAD
 				reader.readLine();
 				reader.readLine();
 				String s = reader.readLine();
@@ -265,3 +290,20 @@ public class Patient extends Person {
 	
 
 }
+=======
+				 String s = reader.readLine();
+				 reader.close();
+				 return s;
+				 
+			}
+			
+			patientID = reader.readLine();
+			
+		}
+		reader.close();
+		return "";
+	}
+	
+
+}
+>>>>>>> Firoz

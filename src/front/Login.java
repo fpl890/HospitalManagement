@@ -31,7 +31,7 @@ public class Login extends JPanel implements ActionListener {
 	private JButton btnNewButton;
 	private JLabel lblNewLabel;
 	private JLabel lblPassword;
-
+	public static String currentUser;
 	/**
 	 * Create the frame.
 	 */
@@ -78,7 +78,10 @@ public class Login extends JPanel implements ActionListener {
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setBounds(190, 144, 83, 14);
 		add(lblPassword);
+		
 	}
+	
+	
 
 	/**
 	 *
@@ -89,6 +92,8 @@ public class Login extends JPanel implements ActionListener {
 			try {
 				//BufferedWriter writer = new BufferedWriter(new FileWriter("record.txt", true));
 				if(Person.validUser(txtUsername.getText(), txtPassword.getText())) {
+					currentUser = txtUsername.getText();
+
 					Main.window.setScreen(Main.Screen.DOCPA);
 				}else {
 					JOptionPane.showMessageDialog(this,
