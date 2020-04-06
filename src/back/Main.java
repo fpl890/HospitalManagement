@@ -19,7 +19,7 @@ public class Main {
 	private JPanel calendar = new SimpleCalendar();
 	private JPanel schedule = new Schedule();
 	private JPanel register = new Register();	
-	private JPanel reqApp = new ReqAppoint();		
+			
 	private JPanel docPan = new DocPanel();
 	public static Main window = new Main();
 	private JFrame frame;
@@ -89,6 +89,7 @@ public class Main {
 		case REGIS:
 			return register;
 		case REQAP:
+			JPanel reqApp = new ReqAppoint();
 			return reqApp;
 		case DOCPA:
 			return docPan;
