@@ -1,3 +1,5 @@
+package front;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
