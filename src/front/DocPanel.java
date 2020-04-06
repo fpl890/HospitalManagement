@@ -33,17 +33,23 @@ public class DocPanel extends JPanel implements ActionListener {
 		btnNewButton_1.setActionCommand("apnt");
 		btnNewButton_1.addActionListener(this);
 		
+		JButton btnNewButton_2 = new JButton("View patient info");
+		btnNewButton_2.setActionCommand("pati");
+		btnNewButton_2.addActionListener(this);
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(163)
-					.addComponent(btnNewButton_1)
-					.addContainerGap(164, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 					.addContainerGap(196, Short.MAX_VALUE)
 					.addComponent(btnNewButton)
 					.addGap(179))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(163)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnNewButton_2)
+						.addComponent(btnNewButton_1))
+					.addContainerGap(164, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -52,7 +58,9 @@ public class DocPanel extends JPanel implements ActionListener {
 					.addComponent(btnNewButton)
 					.addGap(18)
 					.addComponent(btnNewButton_1)
-					.addContainerGap(138, Short.MAX_VALUE))
+					.addGap(38)
+					.addComponent(btnNewButton_2)
+					.addContainerGap(77, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 
@@ -69,6 +77,9 @@ public class DocPanel extends JPanel implements ActionListener {
 	    else if(e.getActionCommand().equals("apnt")) {
 	    	Main.window.setScreen(Main.Screen.REQAP);
 	    	
+	    }
+	    else if (e.getActionCommand().equals("pati")) {
+	    	Main.window.setScreen(Main.Screen.PATDA);
 	    }
 	    
 	} 
