@@ -21,6 +21,7 @@ public class Main {
 	private JPanel register = new Register();	
 	private JPanel reqApp = new ReqAppoint();		
 	private JPanel docPan = new DocPanel();
+	private JPanel readPat = new ReadPatDat();
 	public static Main window = new Main();
 	private JFrame frame;
 	private JPanel current = login;
@@ -29,7 +30,7 @@ public class Main {
 	 * This enum allows encapsulation of all JPanels within Main
 	 */
 	public enum Screen{
-		CALEN, LOGIN, SCHED, REGIS, REQAP, DOCPA
+		CALEN, LOGIN, SCHED, REGIS, REQAP, DOCPA, PATDA
 	}
 	
 	/**
@@ -92,6 +93,8 @@ public class Main {
 			return reqApp;
 		case DOCPA:
 			return docPan;
+		case PATDA:
+			return readPat;
 		default:
 			throw new IllegalArgumentException();
 		}
