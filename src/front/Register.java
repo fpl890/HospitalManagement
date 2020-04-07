@@ -2,6 +2,7 @@ package front;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import back.Doctor;
 import back.Main;
 import back.Person;
 
@@ -25,6 +26,8 @@ public class Register extends JPanel {
 	
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private JRadioButton patRad;
+	private JRadioButton docRad;
 
 	/**
 	 * Create the panel.
@@ -59,13 +62,22 @@ public class Register extends JPanel {
 		btnNewButton.setBounds(161, 238, 120, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				try {
 					Person.writeInfo(textField.getText(), new String(passwordField.getPassword()));
+					if(docRad.isSelected()) {
+						Doctor doc = new Doctor(textField.getText(), "Covid prevention");
+						doc.writeInfo();
+						Main.window.setScreen(Main.Screen.LOGIN, null);
+					}
+					else if (patRad.isSelected()) {
+						Main.window.setScreen(Main.Screen.PFORM, null);
+					}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				Main.window.setScreen(Main.Screen.LOGIN);
+				
 			}
 		});
 		add(btnNewButton);
@@ -73,19 +85,19 @@ public class Register extends JPanel {
 		JButton btnNewButton_1 = new JButton("Cancel");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.window.setScreen(Main.Screen.LOGIN);
+				Main.window.setScreen(Main.Screen.LOGIN, null);
 			}
 		});
 		btnNewButton_1.setBounds(177, 272, 89, 23);
 		add(btnNewButton_1);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Patient");
-		rdbtnNewRadioButton.setBounds(135, 194, 109, 23);
-		add(rdbtnNewRadioButton);
+		patRad = new JRadioButton("Patient");
+		patRad.setBounds(135, 194, 109, 23);
+		add(patRad);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Doctor");
-		rdbtnNewRadioButton_1.setBounds(246, 194, 109, 23);
-		add(rdbtnNewRadioButton_1);
+		docRad = new JRadioButton("Doctor");
+		docRad.setBounds(246, 194, 109, 23);
+		add(docRad);
 
 	}
 }

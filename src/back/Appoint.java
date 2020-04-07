@@ -25,6 +25,9 @@ public class Appoint {
 		this.setDay(day);
 		this.setsHour(sHour);
 		this.seteHour(eHour); 
+		
+		
+	
 			
 				
 	}
@@ -96,6 +99,8 @@ public class Appoint {
 		writer.close();
 		
 	}
+	
+
 	
 	/*
 	

@@ -126,7 +126,7 @@ public class Schedule extends JPanel {
 				shift5.setVisible(false);
 				dailySchedule.clear();
 
-				Main.window.setScreen(Main.Screen.CALEN);
+				Main.window.setScreen(Main.Screen.CALEN, null);
 
 			}
 		});

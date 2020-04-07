@@ -18,6 +18,7 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import back.Appoint;
 import back.Doctor;
+import back.Person;
 
 import javax.swing.JTable;
 import com.jgoodies.forms.layout.FormSpecs;
@@ -37,19 +38,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ReqAppoint extends JPanel implements ActionListener{
-
+	private String doc;
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	Box verticalBox;
 	
-	ArrayList<Appoint> appoints = new ArrayList<Appoint>();
+	ArrayList<Appoint> appoints;
 	
 	/**
 	 * Create the panel.
 	 */
-	public ReqAppoint() {
+	public ReqAppoint(String user) {
+		if(Doctor.isDoc(user)) doc = user;
 		
 		 verticalBox = Box.createVerticalBox();
 		
@@ -57,22 +60,21 @@ public class ReqAppoint extends JPanel implements ActionListener{
 		JScrollPane scrollPane = new JScrollPane(verticalBox);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		Doctor doc = new Doctor();
+		
 		try {
-			doc = new Doctor(Login.currentUser, "cardiology");
-			doc.generateAppointments();
+			appoints =  Doctor.generateAppointments(doc);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		for(Appoint appt:doc.getAppointments()) {
-				/*Appoint hello = new Appoint("Firoz","gavin guinn", 	2020, 10, 12, 11, 12);
-				Appoint goodby = new Appoint("Firoz", "ravin tuinn", 	2020, 13, 2, 11, 12);
-				appoints.add(hello);
-				appoints.add(goodby);*/
-				appoints.add(appt);
-		}
+//		
+//		for(Appoint appt:appoints) {
+//				/*Appoint hello = new Appoint("Firoz","gavin guinn", 	2020, 10, 12, 11, 12);
+//				Appoint goodby = new Appoint("Firoz", "ravin tuinn", 	2020, 13, 2, 11, 12);
+//				appoints.add(hello);
+//				appoints.add(goodby);*/
+//				appoints.add(appt);
+//		}
 
 		refreshList();
 		

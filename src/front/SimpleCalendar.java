@@ -64,7 +64,7 @@ public class SimpleCalendar extends JPanel{
                // int row = tblCalendar.rowAtPoint(evt.getPoint());
               //  int col = tblCalendar.columnAtPoint(evt.getPoint());
                
-                Main.window.setScreen(Main.Screen.SCHED);	
+                Main.window.setScreen(Main.Screen.SCHED, null);	
                 
                }
         });

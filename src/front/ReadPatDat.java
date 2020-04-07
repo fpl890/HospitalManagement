@@ -49,7 +49,7 @@ public class ReadPatDat extends JPanel {
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.window.setScreen(Main.Screen.DOCPA);
+				Main.window.setScreen(Main.Screen.DPAGE, null);
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(this);

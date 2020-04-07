@@ -1,5 +1,7 @@
 package back;
 import java.awt.EventQueue;
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -19,8 +21,11 @@ public class Main {
 	private JPanel calendar = new SimpleCalendar();
 	private JPanel schedule = new Schedule();
 	private JPanel register = new Register();	
+	private JPanel patPage = new patientPage();	
+	private JPanel docPage ;	
+	private JPanel patForm =  new patientform();
 			
-	private JPanel docPan = new DocPanel();
+	
 	private JPanel readPat = new ReadPatDat();
 	public static Main window = new Main();
 	private JFrame frame;
@@ -30,7 +35,7 @@ public class Main {
 	 * This enum allows encapsulation of all JPanels within Main
 	 */
 	public enum Screen{
-		CALEN, LOGIN, SCHED, REGIS, REQAP, DOCPA, PATDA
+		CALEN, LOGIN, SCHED, REGIS, REQAP, PATDA, PPAGE, DPAGE, PFORM
 	}
 	
 	/**
@@ -42,6 +47,19 @@ public class Main {
 				try {	
 					window = new Main();
 					window.frame.setVisible(true);
+					try {
+						Appoint.requestAppt("Firoz", "John", 2000, 7, 4, 1, 2);
+						Appoint.requestAppt("Asad", "Jacky", 2000, 7, 5, 1, 2);
+						Appoint.requestAppt("gavin", "Emily", 2000, 7, 6, 1, 2);
+						Appoint.requestAppt("Firoz", "Samantha", 2000, 7, 7, 1, 2);
+						Appoint.requestAppt("Steven", "Sarah", 2000, 7, 8, 1, 2);
+						Appoint.requestAppt("Steven", "James", 2000, 7, 9, 1, 2);
+						Appoint.requestAppt("gavin", "Bill", 2000, 7, 10, 1, 2);
+						Appoint.requestAppt("gavin", "Jannet", 2000, 7, 11, 1, 2);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,9 +83,11 @@ public class Main {
 	 * Purpose: This method is called by some JPanel to swich to a different panel
 	 * @param screen: member of the enum screen
 	 */
-	public void setScreen(Screen screen) {
+
+	
+	public void setScreen(Screen screen, String doc) {
 		frame.remove(current);
-		current = getPanel(screen);
+		current = getPanel(screen, doc);
 		frame.setContentPane(current);
 		frame.validate();
 		frame.repaint();
@@ -79,7 +99,7 @@ public class Main {
 	 * @param srn: member of the enum Screen
 	 * @return appropriate JPanel
 	 */
-	private JPanel getPanel(Screen srn) {
+	private JPanel getPanel(Screen srn, String user) {
 		switch (srn) {
 		case CALEN:
 			return calendar;	
@@ -90,14 +110,21 @@ public class Main {
 		case REGIS:
 			return register;
 		case REQAP:
-			JPanel reqApp = new ReqAppoint();
+			JPanel reqApp = new ReqAppoint(user);
 			return reqApp;
-		case DOCPA:
-			return docPan;
 		case PATDA:
 			return readPat;
+		case DPAGE:
+			return new doctorPage(user);
+		case PPAGE:
+			return patPage;
+		case PFORM:
+			return patForm;
 		default:
 			throw new IllegalArgumentException();
 		}
 	}
+	
+	
+	
 }

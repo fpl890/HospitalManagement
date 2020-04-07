@@ -30,6 +30,31 @@ public class Doctor extends Person {
 		this.department = "unknown";
 	}
 	
+	public static boolean isDoc(String name) {
+		boolean found = false;
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader("./dat/doctors.txt"));
+			String line = reader.readLine();
+			while(!found && line != null) {
+				
+				if(name.equals(line)) found = true;
+				line = reader.readLine();
+				
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();	
+		
+		}
+		
+		return found;
+		
+}
 	
 	/**
 	 * @return
@@ -131,7 +156,7 @@ public class Doctor extends Person {
 	}
 	*/
 	
-	public void writeInfo() throws IOException {
+	public  void writeInfo() throws IOException {
 		BufferedWriter writer = new BufferedWriter(new FileWriter("./dat/doctors.txt", true));
 		writer.write(this.getName() + "\n");
 		writer.append(this.getDepartment() + "\n");
@@ -140,13 +165,13 @@ public class Doctor extends Person {
 
 	}
 	
-	public void generateAppointments() throws IOException{
+	public static ArrayList<Appoint> generateAppointments(String name) throws IOException{
 		BufferedReader reader = new BufferedReader(new FileReader("./dat/appointments.txt"));
-		
+		ArrayList <Appoint> appts = new ArrayList<Appoint>();
 		String line = "";
 		while (line!=null) {
 			line = reader.readLine();
-			if (line!=null &&line.equals(this.name)) {
+			if (line!=null &&line.equals(name)) {
 				String patient = reader.readLine();
 				String[] date = reader.readLine().split("/");
 				int  month = Integer.parseInt(date[0]);
@@ -155,22 +180,14 @@ public class Doctor extends Person {
 				String[] time = reader.readLine().split(" ");
 				int sHour = Integer.parseInt(time[0]);
 				int eHour = Integer.parseInt(time[2]);
-				Appoint appt = new Appoint(this.getName(), patient, year, month, day, sHour, eHour);
-				this.appointments.add(appt);
+				Appoint appt = new Appoint(name, patient, year, month, day, sHour, eHour);
+				appts.add(appt);
 			}
 			
 		}
+		return appts;
 	}
 	
-	public static void main (String[] args) {
-		Doctor doc = new Doctor("Dr. Gavin", "Cardiology");
-		try {
-			doc.generateAppointments();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
+
 	
 }

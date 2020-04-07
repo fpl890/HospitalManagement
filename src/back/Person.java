@@ -88,6 +88,12 @@ public class Person {
 		reader.close();
 		return false;
 	} 
+	
+	public static boolean isDoc(String name) {
+		
+		return false;
+		
+	}
 
 //	public static void main(String[] args) {
 //		// TODO Auto-generated method stub
