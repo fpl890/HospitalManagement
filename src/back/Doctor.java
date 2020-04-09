@@ -30,7 +30,7 @@ public class Doctor extends Person {
 		this.department = "unknown";
 	}
 	
-	public static boolean isDoc(String name) {
+	public static boolean isDoc(String name) {	
 		boolean found = false;
 		BufferedReader reader;
 		try {
