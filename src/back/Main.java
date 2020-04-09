@@ -18,8 +18,8 @@ public class Main {
 	
 	//Total JPanels in app 
 	private JPanel login = new Login();
-	private JPanel calendar = new SimpleCalendar();
-	private JPanel schedule = new Schedule();
+	private JPanel calendar;
+	private JPanel schedule;
 	private JPanel register = new Register();	
 	private JPanel patPage = new patientPage();	
 	private JPanel docPage ;	
@@ -48,7 +48,7 @@ public class Main {
 					window = new Main();
 					window.frame.setVisible(true);
 					try {
-						Appoint.requestAppt("Firoz", "John", 2000, 7, 4, 1, 2);
+						Appoint.requestAppt("gavin", "John", 2020, 4, 9, 1, 2);
 						Appoint.requestAppt("Asad", "Jacky", 2000, 7, 5, 1, 2);
 						Appoint.requestAppt("gavin", "Emily", 2000, 7, 6, 1, 2);
 						Appoint.requestAppt("Firoz", "Samantha", 2000, 7, 7, 1, 2);
@@ -85,9 +85,9 @@ public class Main {
 	 */
 
 	
-	public void setScreen(Screen screen, String doc) {
+	public void setScreen(Screen screen, String user, String flag) {
 		frame.remove(current);
-		current = getPanel(screen, doc);
+		current = getPanel(screen, user, flag);
 		frame.setContentPane(current);
 		frame.validate();
 		frame.repaint();
@@ -99,14 +99,16 @@ public class Main {
 	 * @param srn: member of the enum Screen
 	 * @return appropriate JPanel
 	 */
-	private JPanel getPanel(Screen srn, String user) {
+	private JPanel getPanel(Screen srn, String user, String flag) {
 		switch (srn) {
 		case CALEN:
-			return calendar;	
+			JPanel calen = new SimpleCalendar(user, flag);
+			return calen;	
 		case LOGIN:
 			return login;
 		case SCHED:
-			return schedule;
+			JPanel sched = new newSched(user, flag);
+			return sched;
 		case REGIS:
 			return register;
 		case REQAP:
@@ -123,6 +125,12 @@ public class Main {
 		default:
 			throw new IllegalArgumentException();
 		}
+	}
+
+
+	private JPanel schedule(String flag) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

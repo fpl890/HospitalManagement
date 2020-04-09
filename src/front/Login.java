@@ -65,7 +65,7 @@ public class Login extends JPanel implements ActionListener {
 		btnNewButton.setBounds(151, 252, 160, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.window.setScreen(Main.Screen.REGIS, null);
+				Main.window.setScreen(Main.Screen.REGIS, null, null);
 			}
 		});
 		add(btnNewButton);
@@ -94,8 +94,8 @@ public class Login extends JPanel implements ActionListener {
 				//BufferedWriter writer = new BufferedWriter(new FileWriter("record.txt", true));
 				if(Person.validUser(txtUsername.getText(), txtPassword.getText())) {
 					currentUser = txtUsername.getText();
-					if(Doctor.isDoc(txtUsername.getText())) Main.window.setScreen(Main.Screen.DPAGE, txtUsername.getText());
-					else Main.window.setScreen(Main.Screen.PPAGE, null);
+					if(Doctor.isDoc(txtUsername.getText())) Main.window.setScreen(Main.Screen.DPAGE, txtUsername.getText(), null);
+					else Main.window.setScreen(Main.Screen.PPAGE, null, null);
 					
 				}else {
 					JOptionPane.showMessageDialog(this,

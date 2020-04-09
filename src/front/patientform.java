@@ -222,7 +222,7 @@ public class patientform extends JPanel implements ActionListener{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				Main.window.setScreen(Main.Screen.LOGIN, null);
+				Main.window.setScreen(Main.Screen.LOGIN, null, null);
 
 			}
 		});

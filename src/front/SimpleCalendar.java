@@ -22,8 +22,13 @@ public class SimpleCalendar extends JPanel{
      JScrollPane stblCalendar;
     
      int realYear, realMonth, realDay, currentYear, currentMonth;
+     int indFirstX;
+     int numDays;
+     String user = null;
     
-    public SimpleCalendar (){
+    
+    public SimpleCalendar (String user, String flag){
+    	this.user = user;
   
         try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
         catch (ClassNotFoundException e) {}
@@ -61,10 +66,16 @@ public class SimpleCalendar extends JPanel{
         	
         	public void mouseClicked(java.awt.event.MouseEvent evt) {		
         		
-               // int row = tblCalendar.rowAtPoint(evt.getPoint());
-              //  int col = tblCalendar.columnAtPoint(evt.getPoint());
+               int row = tblCalendar.rowAtPoint(evt.getPoint());
+               int col = tblCalendar.columnAtPoint(evt.getPoint());
                
-                Main.window.setScreen(Main.Screen.SCHED, null);	
+               int day = row * 7 + (col + 1) - indFirstX;
+               
+               if(day<=numDays && day >= 1) {
+            	   Main.window.setScreen(Main.Screen.SCHED, user,(currentMonth+1)+"/"+day+"/"+currentYear);	
+               }
+               
+                
                 
                }
         });
@@ -140,6 +151,7 @@ public class SimpleCalendar extends JPanel{
         
         String[] months =  {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         int nod, som; 
+      
         
       
         btnPrev.setEnabled(true);
@@ -162,6 +174,10 @@ public class SimpleCalendar extends JPanel{
         nod = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
         som = cal.get(GregorianCalendar.DAY_OF_WEEK);
         
+        indFirstX = (1+som-2)%7;
+        
+        
+        numDays = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
         //Draw the Calander
         for (int i=1; i<=nod; i++){
             int row = (i+som-2)/7; //new Integer((i+som-2)/7);

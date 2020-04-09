@@ -15,7 +15,7 @@ public class Patient extends Person {
 
 	ArrayList<String> listOfAppointments = new ArrayList<String>();
 	
-	Patient(String id, String name, String birthday, String sex, String preExistCon, int height, double weight) {
+	public Patient(String id, String name, String birthday, String sex, String preExistCon, int height, double weight) {
 		this.id = id;
 		this.name = name;
 		this.birthday = birthday;
@@ -112,6 +112,28 @@ public class Patient extends Person {
 		writer.append(PEC + "\n");
 		writer.close();
 	}
+	
+	/**
+	 * @param id
+	 * @param name
+	 * @param birthday
+	 * @param sex
+	 * @param height
+	 * @param weight
+	 * @param PEC
+	 * @throws IOException
+	 */
+	public void writeInfo() throws IOException {
+		BufferedWriter writer = new BufferedWriter(new FileWriter("./dat/patientInfo.txt", true));
+		writer.write(id + "\n");
+		writer.append(name + "\n");
+		writer.append(birthday + "\n");
+		writer.append(sex + "\n");
+		writer.append(height + "\n");
+		writer.append(weight + "\n");
+		writer.append(preExistCon + "\n");
+		writer.close();
+	}
 
 
 		
@@ -123,10 +145,12 @@ public class Patient extends Person {
 	public static String getPatientName(String id) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader("./dat/patientInfo.txt"));
 		String patientID = reader.readLine();
-		
+		String s = null;
 		while(patientID != null) {
-			if (patientID == id) {
-				String s = reader.readLine();
+			
+			if (patientID.equals(id)) {
+				 s = reader.readLine();
+				 
 				reader.close();
 				return s;
 			}
@@ -134,7 +158,7 @@ public class Patient extends Person {
 		}
 		
 		reader.close();
-		return "";	
+		return s;	
 	}
 	
 	
@@ -148,7 +172,8 @@ public class Patient extends Person {
 		String patientID = reader.readLine();
 		
 		while(patientID != null) {
-			if (patientID == id) {
+			//System.out.println(patientID);
+			if (patientID.equals(id)) {
 				reader.readLine();
 				String s = reader.readLine();
 				reader.close();
@@ -158,7 +183,7 @@ public class Patient extends Person {
 		}
 		
 		reader.close();
-		return "";	
+		return null;	
 	}
 	
 	/**
@@ -171,7 +196,7 @@ public class Patient extends Person {
 		String patientID = reader.readLine();
 		
 		while(patientID != null) {
-			if (patientID == id) {
+			if (patientID.equals(id)) {
 				reader.readLine();
 				reader.readLine();
 				String s = reader.readLine();
@@ -182,7 +207,7 @@ public class Patient extends Person {
 		}
 		
 		reader.close();
-		return "";	
+		return null;	
 	}
 	
 	/**
@@ -195,7 +220,7 @@ public class Patient extends Person {
 		String patientID = reader.readLine();
 		
 		while(patientID != null) {
-			if (patientID == id) {
+			if (patientID.equals(id)) {
 				reader.readLine();
 				reader.readLine();
 				reader.readLine();
@@ -207,7 +232,7 @@ public class Patient extends Person {
 		}
 		
 		reader.close();
-		return "";	
+		return null;	
 	}
 	
 	/**
@@ -220,7 +245,8 @@ public class Patient extends Person {
 		String patientID = reader.readLine();
 		
 		while(patientID != null) {
-			if (patientID == id) {
+			System.out.println(patientID);
+			if (patientID.equals(id)) {
 				reader.readLine();
 				reader.readLine();
 				reader.readLine();
@@ -233,7 +259,7 @@ public class Patient extends Person {
 		}
 		
 		reader.close();
-		return "";	
+		return null;	
 	}
 	
 	/**
@@ -246,7 +272,7 @@ public class Patient extends Person {
 		String patientID = reader.readLine();
 		
 		while(patientID != null) {
-			if (patientID == id) {
+			if (patientID.equals(id)) {
 				reader.readLine();
 				reader.readLine();
 				reader.readLine();
@@ -260,7 +286,7 @@ public class Patient extends Person {
 		}
 		
 		reader.close();
-		return "";	
+		return null;	
 	}
 	
 

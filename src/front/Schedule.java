@@ -20,19 +20,24 @@ import java.awt.event.ActionEvent;
 
 public class Schedule extends JPanel {
 
+	String user = null;
+	String date = null;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3769564808489547540L;
 	List<String> dailySchedule = new ArrayList<String>();
-	Doctor bob = new Doctor();
+
 
 	/**
 	 * Create the panel.
+	 * @param flag 
 	 */
-	public Schedule() {
+	public Schedule(String user, String date) {
+		this.user = user;
+		this.date = date;
 
-		JLabel label = new JLabel("");
+		JLabel label = new JLabel(date);
 
 		JRadioButton rButtonShift1 = new JRadioButton("0:00 - 8:00");
 
@@ -126,7 +131,7 @@ public class Schedule extends JPanel {
 				shift5.setVisible(false);
 				dailySchedule.clear();
 
-				Main.window.setScreen(Main.Screen.CALEN, null);
+				Main.window.setScreen(Main.Screen.CALEN, user, null);
 
 			}
 		});
@@ -191,4 +196,6 @@ public class Schedule extends JPanel {
 		d.addDay(dailySchedule);
 		dailySchedule.clear();
 	}
+	
+	
 }

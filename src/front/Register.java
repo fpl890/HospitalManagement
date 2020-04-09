@@ -68,10 +68,10 @@ public class Register extends JPanel {
 					if(docRad.isSelected()) {
 						Doctor doc = new Doctor(textField.getText(), "Covid prevention");
 						doc.writeInfo();
-						Main.window.setScreen(Main.Screen.LOGIN, null);
+						Main.window.setScreen(Main.Screen.LOGIN, null, null);
 					}
 					else if (patRad.isSelected()) {
-						Main.window.setScreen(Main.Screen.PFORM, null);
+						Main.window.setScreen(Main.Screen.PFORM, null, null);
 					}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -85,7 +85,7 @@ public class Register extends JPanel {
 		JButton btnNewButton_1 = new JButton("Cancel");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.window.setScreen(Main.Screen.LOGIN, null);
+				Main.window.setScreen(Main.Screen.LOGIN, null, null);
 			}
 		});
 		btnNewButton_1.setBounds(177, 272, 89, 23);

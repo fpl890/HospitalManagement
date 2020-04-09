@@ -87,6 +87,10 @@ public class Appoint {
 		this.eHour = eHour;
 	}
 	
+	public String getDate() {
+		return month+"/"+day+"/"+year;
+	}
+	
 	
 	
 	public static void requestAppt(String dName,String pName, int year, int month, int day, int sHour, int eHour) throws IOException {

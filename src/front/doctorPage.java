@@ -93,10 +93,10 @@ public class doctorPage extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String cmd =  e.getActionCommand();
 		if(cmd.equals("sched")){
-			Main.window.setScreen(Main.Screen.CALEN, null);
+			Main.window.setScreen(Main.Screen.CALEN, doc, null);
 		}
 		else if (cmd.equals("reqApp")) {
-			Main.window.setScreen(Main.Screen.REQAP, doc);
+			Main.window.setScreen(Main.Screen.REQAP, doc, null);
 		}
 		
 	}
