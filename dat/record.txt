@@ -310,3 +310,7 @@ mrDoc
 pass
 gavin
 pass
+doctor
+password
+patient
+password
