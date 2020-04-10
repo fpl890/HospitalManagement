@@ -24,6 +24,7 @@ public class Main {
 	private JPanel patPage = new patientPage();	
 	private JPanel docPage ;	
 	private JPanel patForm =  new patientform();
+	private JPanel patRequest = new PatRequestApt();
 			
 	
 	private JPanel readPat = new ReadPatDat();
@@ -35,7 +36,7 @@ public class Main {
 	 * This enum allows encapsulation of all JPanels within Main
 	 */
 	public enum Screen{
-		CALEN, LOGIN, SCHED, REGIS, REQAP, PATDA, PPAGE, DPAGE, PFORM
+		CALEN, LOGIN, SCHED, REGIS, REQAP, PATDA, PPAGE, DPAGE, PFORM, PREQ
 	}
 	
 	/**
@@ -120,6 +121,8 @@ public class Main {
 			return patPage;
 		case PFORM:
 			return patForm;
+		case PREQ:
+				return patRequest;
 		default:
 			throw new IllegalArgumentException();
 		}

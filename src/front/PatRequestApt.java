@@ -10,6 +10,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import back.Doctor;
 import back.Main;
 
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -17,20 +18,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 
 public class PatRequestApt extends JPanel {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3769564808489547540L;
-
-
+	
+	
 	/**
 	 * Create the panel.
 	 */
 	public PatRequestApt() {
+		
+		initialize();
+	}
 
+
+	
+	public void initialize() {
+		
 		JLabel label = new JLabel("");
 
 		JRadioButton rButtonApt1 = new JRadioButton("9:00 - 12:00");
@@ -107,10 +113,34 @@ public class PatRequestApt extends JPanel {
 		});
 		
 		JLabel lblDisclaimer = new JLabel("We can not guarantee your selected appointment");
+		
+		String[] listOfDoctors = {"Dr James", "Dr Robert", "Dr Mary", "Dr Jenn"};
+		JComboBox doctorBox = new JComboBox(listOfDoctors);
+		doctorBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String docSelected = (String) doctorBox.getSelectedItem();
+				
+				switch (docSelected) {
+					case "Dr James":
+						break;
+					case "Dr Robert":
+						break;
+					case "Dr Mary":
+						break;
+					case "Dr Jenn":
+						break;
+					default:
+						break;
+				}
+			}
+		});
+		
+
+		
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
@@ -122,7 +152,7 @@ public class PatRequestApt extends JPanel {
 								.addComponent(rButtonApt2, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
 								.addComponent(rButtonApt4, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
 								.addComponent(rButtonApt5, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(apt5)
 								.addComponent(lblAptRequested, GroupLayout.PREFERRED_SIZE, 231, GroupLayout.PREFERRED_SIZE)
@@ -135,25 +165,39 @@ public class PatRequestApt extends JPanel {
 							.addComponent(btnConfirmSelection)
 							.addGap(41)
 							.addComponent(ScheduleReturn))
+						.addComponent(lblAvailableAppointments)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(20)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(10)
-									.addComponent(lblDisclaimer, GroupLayout.PREFERRED_SIZE, 381, GroupLayout.PREFERRED_SIZE))
-								.addComponent(lblAvailableAppointments))))
-					.addContainerGap())
+							.addComponent(lblDisclaimer, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(doctorBox, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)))
+					.addGap(69))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(54)
+					.addComponent(lblAvailableAppointments)
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDisclaimer, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(doctorBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(29)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(65)
-							.addComponent(lblAvailableAppointments)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblAptRequested, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblDisclaimer, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
+							.addComponent(apt1)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(apt2)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(apt3)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(apt4)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(apt5))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(21)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(label)
@@ -167,20 +211,7 @@ public class PatRequestApt extends JPanel {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(rButtonApt4)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(rButtonApt5))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(130)
-							.addComponent(lblAptRequested, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(apt1)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(apt2)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(apt3)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(apt4)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(apt5)))
+							.addComponent(rButtonApt5)))
 					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnConfirmSelection)
@@ -188,7 +219,7 @@ public class PatRequestApt extends JPanel {
 					.addGap(34))
 		);
 		setLayout(groupLayout);
-
 	}
-
-}
+	
+		
+	}
