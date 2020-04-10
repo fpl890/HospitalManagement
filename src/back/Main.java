@@ -122,7 +122,7 @@ public class Main {
 		case PFORM:
 			return patForm;
 		case PREQ:
-				return patRequest;
+			return patRequest;
 		default:
 			throw new IllegalArgumentException();
 		}
