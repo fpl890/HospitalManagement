@@ -1,20 +1,25 @@
 package front;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class patientPage extends JPanel{
+import back.Main;
+
+public class patientPage extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-
+	private String user;
 	/**
 	 * Create the application.
 	 */
-	public patientPage() {
+	public patientPage(String user) {
+		this.user = user;
 		initialize();
 	}
 
@@ -24,9 +29,12 @@ public class patientPage extends JPanel{
 	private void initialize() {
 		
 		
-		JButton btnNewButton = new JButton("Book Appointment");
-		btnNewButton.setBounds(243, 57, 150, 64);
-		this.add(btnNewButton);
+		JButton btnBookApt = new JButton("Book Appointment");
+		btnBookApt.setBounds(243, 57, 150, 64);
+		this.add(btnBookApt);
+		btnBookApt.setActionCommand("sched");
+		btnBookApt.addActionListener(this);
+		
 		
 		JButton btnNewButton_1 = new JButton("View requested");
 		btnNewButton_1.setBounds(243, 166, 150, 61);
@@ -47,6 +55,14 @@ public class patientPage extends JPanel{
 		lblNewLabel_1.setIcon(patient);
 		lblNewLabel_1.setBounds(-123, 31, 371, 362);
 		this.add(lblNewLabel_1);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		String cmd =  e.getActionCommand();
+		if(cmd.equals("sched")){
+			Main.window.setScreen(Main.Screen.PCAL, this.user, null);
+		}
+		
 	}
 }
 

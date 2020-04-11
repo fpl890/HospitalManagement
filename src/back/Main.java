@@ -19,8 +19,11 @@ public class Main {
 	//Total JPanels in app 
 	private JPanel login = new Login();
 	private JPanel register = new Register();	
-	private JPanel patPage = new patientPage();		
+	private JPanel patPage ;
+	private JPanel docPage ;	
 	private JPanel patForm =  new patientform();
+	private JPanel patCal;
+	private JPanel patReq;
 			
 	
 	private JPanel readPat = new ReadPatDat();
@@ -32,18 +35,20 @@ public class Main {
 	 * This enum allows encapsulation of all JPanels within Main
 	 */
 	public enum Screen{
-		CALEN, LOGIN, SCHED, REGIS, REQAP, PATDA, PPAGE, DPAGE, PFORM
+		CALEN, LOGIN, SCHED, REGIS, REQAP, PATDA, PPAGE, DPAGE, PFORM, PCAL, PREQ
 	}
 	
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {	
 					window = new Main();
 					window.frame.setVisible(true);
+					/*
 					try {
 						Appoint.requestAppt("gavin", "John", 2020, 4, 9, 1, 2);
 						Appoint.requestAppt("Asad", "Jacky", 2000, 7, 5, 1, 2);
@@ -56,7 +61,7 @@ public class Main {
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}*/
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -116,9 +121,17 @@ public class Main {
 		case DPAGE:
 			return new doctorPage(user);
 		case PPAGE:
+			JPanel patPage = new patientPage(user);	
 			return patPage;
 		case PFORM:
 			return patForm;
+		case PCAL:
+			JPanel patCalen = new PatientCalendar(user, flag);
+			return patCalen;
+		case PREQ:
+			JPanel patRequest = new PatRequestApt(user, flag);
+			return patRequest;
+			
 		default:
 			throw new IllegalArgumentException();
 		}
