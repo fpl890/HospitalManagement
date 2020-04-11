@@ -64,10 +64,10 @@ public class newSched extends JPanel {
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		try {
-			appoints =  Doctor.generateAppointments(doc);
+			appoints =  Doctor.generateConfAppointments(doc);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("null");
 		}
 //		
 //		for(Appoint appt:appoints) {
@@ -166,12 +166,14 @@ public class newSched extends JPanel {
 		for (Component c : verticalBox.getComponents()) {
 			verticalBox.remove(c);
 		}
-		for(int i= 0; i < appoints.size(); i++) {
-			System.out.println("This date: " + date + " Saved date:" +appoints.get(i).getDate());
-			if(appoints.get(i).getDate().equals(date)) {
-				makeBox(appoints.get(i), i );
+		if (appoints != null) {
+			for(int i= 0; i < appoints.size(); i++) {
+				System.out.println("This date: " + date + " Saved date:" +appoints.get(i).getDate());
+				if(appoints.get(i).getDate().equals(date)) {
+					makeBox(appoints.get(i), i );
+				}
+				
 			}
-			
 		}
 	}
 	

@@ -262,6 +262,19 @@ public class Patient extends Person {
 		return null;	
 	}
 	
+	public static ArrayList<String> fetchDoctors() throws IOException{
+		BufferedReader reader = new BufferedReader(new FileReader("./dat/doctors.txt"));
+		String doctor = "";
+		ArrayList<String> doctors = new ArrayList<String>();
+		while (doctor != null) {
+			doctor = reader.readLine();
+			doctors.add(doctor);
+			reader.readLine();
+		}
+		return doctors;
+		
+	}
+	
 	/**
 	 * @param id
 	 * @return

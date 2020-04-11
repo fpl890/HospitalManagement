@@ -8,6 +8,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+/**
+ * @author Firoz Lakhani
+ *
+ */
+
 public class Appoint {
 	private String pName;
 	private String dName;
@@ -17,6 +23,15 @@ public class Appoint {
 	private int sHour;
 	private int eHour;
 	
+	/**
+	 * @param dName
+	 * @param pName
+	 * @param year
+	 * @param month
+	 * @param day
+	 * @param sHour
+	 * @param eHour
+	 */
 	public Appoint(String dName, String pName, int year, int month, int day, int sHour, int eHour){
 		this.setdName(dName);
 		this.setpName(pName);
@@ -92,7 +107,16 @@ public class Appoint {
 	}
 	
 	
-	
+	/**
+	 * @param dName
+	 * @param pName
+	 * @param year
+	 * @param month
+	 * @param day
+	 * @param sHour
+	 * @param eHour
+	 * Appends the patient request to the doctor list of requested appointments
+	 */
 	public static void requestAppt(String dName,String pName, int year, int month, int day, int sHour, int eHour) throws IOException {
 			
 		BufferedWriter writer = new BufferedWriter(new FileWriter("./dat/appointments.txt", true));
@@ -104,25 +128,29 @@ public class Appoint {
 		
 	}
 	
+	/**
+	 * @param dName
+	 * @param pName
+	 * @param year
+	 * @param month
+	 * @param day
+	 * @param sHour
+	 * @param eHour
+	 * Appends the patient request to the doctor list of confirmed appointments
+	 */
+	public static void confirmAppt(String dName,String pName, int year, int month, int day, int sHour, int eHour) throws IOException {
+		
+		BufferedWriter writer = new BufferedWriter(new FileWriter("./dat/confAppointments.txt", true));
+		writer.write(dName+ "\n");
+		writer.append(pName + "\n");
+		writer.append(month + "/" + day + "/"+ year + "\n");
+		writer.append(sHour+" to "+ eHour +"\n");
+		writer.close();
+		
+	}
+	
 
 	
-	/*
 	
-	public static void main (String[] args) {
-		try {
-			Appoint.requestAppt("Firoz", "John", 2000, 7, 4, 1, 2);
-			Appoint.requestAppt("Asad", "Jacky", 2000, 7, 5, 1, 2);
-			Appoint.requestAppt("Gavin", "Emily", 2000, 7, 6, 1, 2);
-			Appoint.requestAppt("Firoz", "Samantha", 2000, 7, 7, 1, 2);
-			Appoint.requestAppt("Steven", "Sarah", 2000, 7, 8, 1, 2);
-			Appoint.requestAppt("Steven", "James", 2000, 7, 9, 1, 2);
-			Appoint.requestAppt("Gavin", "Bill", 2000, 7, 10, 1, 2);
-			Appoint.requestAppt("Gavin", "Jannet", 2000, 7, 11, 1, 2);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	} 
-	*/
 
 }

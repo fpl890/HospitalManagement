@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * This class implements static and notstatic methods needed for doctors
  * Cleaned by Gavin April 8
+ * @author Firoz Lakhani
  */
 public class Doctor extends Person {
 	
@@ -88,6 +89,34 @@ public class Doctor extends Person {
 		reader.close();
 		return appts;
 	}
+	/**
+	 * @param name = name of doctor to be searched
+	 * @return list of confirmed appointments under that docs name
+	 * @throws IOException
+	 */
+	public static ArrayList<Appoint> generateConfAppointments(String name) throws IOException{
+		BufferedReader reader = new BufferedReader(new FileReader("./dat/confAppointments.txt"));
+		ArrayList <Appoint> appts = new ArrayList<Appoint>();
+		String line = "";
+		while (line!=null) {
+			line = reader.readLine();
+			if (line!=null &&line.equals(name)) {
+				String patient = reader.readLine();
+				String[] date = reader.readLine().split("/");
+				int  month = Integer.parseInt(date[0]);
+				int day = Integer.parseInt(date[1]);
+				int year = Integer.parseInt(date [2]);
+				String[] time = reader.readLine().split(" ");
+				int sHour = Integer.parseInt(time[0]);
+				int eHour = Integer.parseInt(time[2]);
+				Appoint appt = new Appoint(name, patient, year, month, day, sHour, eHour);
+				appts.add(appt);
+			}
+		}
+		reader.close();
+		return appts;
+	}
+	
 	
  //Getters and setters
 	
@@ -133,52 +162,4 @@ public class Doctor extends Person {
 		return this.appointments;
 	}
 	
-//Misc
-	
-	// This method might need some work before deploying 
-//		/**
-//		 * Looks 
-//		 * @return 
-//		 * @throws IOException
-//		 */
-//		public static String fetchDepartment(String name) throws IOException {
-	//	
-//				BufferedReader reader = new BufferedReader(new FileReader("./dat/appointments.txt"));
-//				String line = "";
-//				while(!line.equals(name)) {
-//					line = reader.readLine();
-//				}
-//				line = reader.readLine(); 
-//				return line;
-//				
-//		}
-		
-	
-		
-//		public void sortAppointments() {
-//			Comparator<Appoint> compareByTime = new Comparator<Appoint>() {
-//			    @Override
-//			    public int compare(Appoint o1, Appoint o2) {
-//			    	if (o1.getYear().compareTo(o2.getYear()) == 0) {
-//			    		
-//			    		if(o1.getMonth().compareTo(o2.getMonth()) == 0) {
-//			    			
-//			    			if(o1.getDay().compareTo(o2.getDay()) == 0) {
-//			    					
-//				    				return o1.getTimeFrame().compareTo(o2.getTimeFrame());	
-//				    		}else{
-//				    			return o1.getDay().compareTo(o2.getDay());
-//				    		}
-//			    		}else{
-//			    			return o1.getMonth().compareTo(o2.getMonth());
-//			    		}
-//			    	}else {
-//			    		return o1.getYear().compareTo(o2.getYear());
-//			    	}
-//			        
-//			    }
-//			};
-//			Collections.sort(this.appointments, compareByTime);
-//		
-//		}
 }

@@ -177,6 +177,13 @@ public class ReqAppoint extends JPanel implements ActionListener{
 		}
 		
 		else if(cmd.equals("a")) { //Accept
+			Appoint a = appoints.get(ind);
+			try {
+				Appoint.confirmAppt(a.getdName(), a.getpName(), a.getYear(), a.getMonth(), a.getDay(), a.getsHour(), a.geteHour());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			appoints.remove(ind);
 			//something
 		}

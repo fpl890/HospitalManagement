@@ -7,13 +7,16 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import back.Appoint;
 import back.Doctor;
 import back.Main;
+import back.Patient;
 
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionListener;
@@ -22,11 +25,29 @@ import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
-public class PatRequestApt extends JPanel {
+
+/**
+ * 
+ * @authors Firoz Lakhani, Asad Choudary
+ *
+ */
+public class PatRequestApt extends JPanel implements ActionListener{
 	
 	String user = null;
 	String date = null;
+	String time = null;
+	String docSelected;
+	private JRadioButton rButtonApt1;
+	private JRadioButton rButtonApt2;
+	private JRadioButton rButtonApt3;
+	private JRadioButton rButtonApt4;
+	private JRadioButton rButtonApt5;
 	
+	private JLabel apt1;
+	private JLabel apt2;
+	private JLabel apt3;
+	private JLabel apt4;
+	private JLabel apt5;
 	
 	/**
 	 * Create the panel.
@@ -35,35 +56,36 @@ public class PatRequestApt extends JPanel {
 		this.user = user;
 		this.date = date;
 		
-		initialize();
+		initialize(user);
 	}
 
 
 	
-	public void initialize() {
+	public void initialize(String user) {
 		
 		JLabel label = new JLabel("");
 
-		JRadioButton rButtonApt1 = new JRadioButton("9:00 - 12:00");
+		rButtonApt1 = new JRadioButton("9:00 - 12:00");
 
-		JRadioButton rButtonApt2 = new JRadioButton("12:00 - 3:00");
+		rButtonApt2 = new JRadioButton("12:00 - 3:00");
 
-		JRadioButton rButtonApt4 = new JRadioButton("5:00 - 7:00");
+		rButtonApt4 = new JRadioButton("5:00 - 7:00");
 
 		JLabel lblAvailableAppointments = new JLabel("Request an Appointment");
 		lblAvailableAppointments.setFont(new Font("Tahoma", Font.PLAIN, 21));
 
-		JRadioButton rButtonApt3 = new JRadioButton("3:00 - 5:00");
+		rButtonApt3 = new JRadioButton("3:00 - 5:00");
 
-		JRadioButton rButtonApt5 = new JRadioButton("7:00 - 9:00");
-
+		rButtonApt5 = new JRadioButton("7:00 - 9:00");
+	
+		
 		JLabel lblAptRequested = new JLabel("Appointment Requested:");
 
-		JLabel apt1 = new JLabel("9:00 - 12:00");
-		JLabel apt2 = new JLabel("12:00 - 3:00");
-		JLabel apt3 = new JLabel("3:00 - 5:00");
-		JLabel apt4 = new JLabel("5:00 - 7:00");
-		JLabel apt5 = new JLabel("7:00 - 9:00");
+		apt1 = new JLabel("9:00 - 12:00");
+		apt2 = new JLabel("12:00 - 3:00");
+		apt3 = new JLabel("3:00 - 5:00");
+		apt4 = new JLabel("5:00 - 7:00");
+		apt5 = new JLabel("7:00 - 9:00");
 
 		apt1.setVisible(false);
 		apt2.setVisible(false);
@@ -72,75 +94,66 @@ public class PatRequestApt extends JPanel {
 		apt5.setVisible(false);
 
 		JButton btnConfirmSelection = new JButton("Confirm Selection");
+		btnConfirmSelection.setActionCommand("confirm");
+		btnConfirmSelection.addActionListener(this);
 		btnConfirmSelection.addMouseListener(new MouseAdapter() {
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (rButtonApt1.isSelected()) {
 					apt1.setVisible(true);
-					rButtonApt1.doClick();
+					//rButtonApt1.doClick();
 				}
 
 				if (rButtonApt2.isSelected()) {
 					apt2.setVisible(true);
-					rButtonApt2.doClick();
+					//rButtonApt2.doClick();
 				}
 				if (rButtonApt3.isSelected()) {
 					apt3.setVisible(true);
-					rButtonApt3.doClick();
+					//rButtonApt3.doClick();
 				}
 				if (rButtonApt4.isSelected()) {
 					apt4.setVisible(true);
-					rButtonApt4.doClick();
+					//rButtonApt4.doClick();
 				}
 				if (rButtonApt5.isSelected()) {
 					apt5.setVisible(true);
-					rButtonApt5.doClick();
+					//rButtonApt5.doClick();
 				}
+				
+				
 
 
 
 			}
 
 		});
+		
 
 		JButton ScheduleReturn = new JButton("Return to Schedule");
-		ScheduleReturn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				apt1.setVisible(false);
-				apt2.setVisible(false);
-				apt3.setVisible(false);
-				apt4.setVisible(false);
-				apt5.setVisible(false);
-
-				Main.window.setScreen(Main.Screen.PCAL, null, null);
-
-			}
-		});
+		ScheduleReturn.setActionCommand("return");
+		ScheduleReturn.addActionListener(this);
 		
 		JLabel lblDisclaimer = new JLabel("We can not guarantee your selected appointment");
+		ArrayList<String> listOfDoctors = new ArrayList<String>();
+		try {
+			listOfDoctors = Patient.fetchDoctors();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
-		String[] listOfDoctors = {"Dr James", "Dr Robert", "Dr Mary", "Dr Jenn"};
-		JComboBox doctorBox = new JComboBox(listOfDoctors);
+		Object[] list =  listOfDoctors.toArray();
+		JComboBox doctorBox = new JComboBox(list);
+		docSelected = (String) doctorBox.getSelectedItem();
 		doctorBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String docSelected = (String) doctorBox.getSelectedItem();
-				
-				switch (docSelected) {
-					case "Dr James":
-						break;
-					case "Dr Robert":
-						break;
-					case "Dr Mary":
-						break;
-					case "Dr Jenn":
-						break;
-					default:
-						break;
-				}
+				docSelected = (String) doctorBox.getSelectedItem();
 			}
 		});
 		
-
+		
 		
 
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -224,6 +237,60 @@ public class PatRequestApt extends JPanel {
 					.addGap(34))
 		);
 		setLayout(groupLayout);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		String cmd =  e.getActionCommand();
+		int start  = 0;
+		int end = 0;
+		if(cmd.equals("confirm")){
+			
+			if (rButtonApt1.isSelected()) {
+				start = 9;
+				end = 12;
+			}
+
+			if (rButtonApt2.isSelected()) {
+				start = 12;
+				end = 3;
+			}
+			if (rButtonApt3.isSelected()) {
+				start = 3;
+				end = 5;
+			}
+			if (rButtonApt4.isSelected()) {
+				start = 5;
+				end = 7;
+			}
+			if (rButtonApt5.isSelected()) {
+				start = 7;
+				end = 9;
+			}
+			
+			try {
+				String[] dates = date.split("/");
+				int  month = Integer.parseInt(dates[0]);
+				int day = Integer.parseInt(dates[1]);
+				int year = Integer.parseInt(dates[2]);
+				Appoint.requestAppt(this.docSelected, this.user, year, month, day, start, end);
+				Main.window.setScreen(Main.Screen.PPAGE, this.user, null);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		}
+		
+		if (cmd.equals("return")){
+			apt1.setVisible(false);
+			apt2.setVisible(false);
+			apt3.setVisible(false);
+			apt4.setVisible(false);
+			apt5.setVisible(false);
+			Main.window.setScreen(Main.Screen.PCAL, this.user, null);
+
+		}
+		
 	}
 	
 		

@@ -14,11 +14,12 @@ import back.Main;
 public class patientPage extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-
+	private String user;
 	/**
 	 * Create the application.
 	 */
-	public patientPage() {
+	public patientPage(String user) {
+		this.user = user;
 		initialize();
 	}
 
@@ -59,7 +60,7 @@ public class patientPage extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String cmd =  e.getActionCommand();
 		if(cmd.equals("sched")){
-			Main.window.setScreen(Main.Screen.PCAL, "pat", null);
+			Main.window.setScreen(Main.Screen.PCAL, this.user, null);
 		}
 		
 	}
