@@ -18,11 +18,8 @@ public class Main {
 	
 	//Total JPanels in app 
 	private JPanel login = new Login();
-	private JPanel calendar;
-	private JPanel schedule;
 	private JPanel register = new Register();	
-	private JPanel patPage = new patientPage();	
-	private JPanel docPage ;	
+	private JPanel patPage = new patientPage();		
 	private JPanel patForm =  new patientform();
 			
 	
@@ -128,10 +125,7 @@ public class Main {
 	}
 
 
-	private JPanel schedule(String flag) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	
 	
 	
