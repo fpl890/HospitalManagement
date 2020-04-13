@@ -2,3 +2,9 @@ pat
 pass
 gavin
 pass
+patient
+password
+doctor
+password
+asad
+lmaoo
