@@ -43,7 +43,7 @@ public class DocPage extends JPanel implements ActionListener{
 	 */
 	private void initialize() {
 		
-
+                setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Doctor Home Screen");
 		lblNewLabel.setBounds(155, 11, 123, 36);
