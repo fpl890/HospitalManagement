@@ -38,12 +38,15 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Cleaned By Firoz Lakhani
+ * @author 
+ *
+ */
 public class newSched extends JPanel {
 	private String doc, date;
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	Box verticalBox;
 	
@@ -51,6 +54,11 @@ public class newSched extends JPanel {
 	
 	/**
 	 * Create the panel.
+	 */
+	/**
+	 * Purpose: Creates an interface with a list of appointments
+	 * @param user - current user logged in
+	 * @param date - date requested
 	 */
 	public newSched(String user, String date) {
 		if(Doctor.isDoc(user)) doc = user;
@@ -69,14 +77,6 @@ public class newSched extends JPanel {
 			// TODO Auto-generated catch block
 			System.out.println("null");
 		}
-//		
-//		for(Appoint appt:appoints) {
-//				/*Appoint hello = new Appoint("Firoz","gavin guinn", 	2020, 10, 12, 11, 12);
-//				Appoint goodby = new Appoint("Firoz", "ravin tuinn", 	2020, 13, 2, 11, 12);
-//				appoints.add(hello);
-//				appoints.add(goodby);*/
-//				appoints.add(appt);
-//		}
 
 		refreshList();
 		
@@ -129,6 +129,11 @@ public class newSched extends JPanel {
 	
 	}
 	
+	/**
+	 * Purpose - creates a box with information about a particular appointment
+	 * @param a - Appointment to view
+	 * @param ind - index of the appointment in the ArrayList
+	 */
 	void makeBox(Appoint a, int ind){
 		Box interHbox = Box.createHorizontalBox();
 		interHbox.setPreferredSize(new Dimension(150, 150));
@@ -162,6 +167,9 @@ public class newSched extends JPanel {
 		
 	}
 	
+	/*
+	 * Purpose: Refreshes the list of confirmed appointments for the particular date
+	 */
 	void refreshList() {
 		for (Component c : verticalBox.getComponents()) {
 			verticalBox.remove(c);

@@ -11,8 +11,8 @@ import front.*;
 
 /**
  * The main method both launches the app and handles switching screens within the app
+ * Cleaned by Firoz Lakhani
  * @author Gavin
- *
  */
 public class Main {
 	
@@ -48,20 +48,6 @@ public class Main {
 				try {	
 					window = new Main();
 					window.frame.setVisible(true);
-					/*
-					try {
-						Appoint.requestAppt("gavin", "John", 2020, 4, 9, 1, 2);
-						Appoint.requestAppt("Asad", "Jacky", 2000, 7, 5, 1, 2);
-						Appoint.requestAppt("gavin", "Emily", 2000, 7, 6, 1, 2);
-						Appoint.requestAppt("Firoz", "Samantha", 2000, 7, 7, 1, 2);
-						Appoint.requestAppt("Steven", "Sarah", 2000, 7, 8, 1, 2);
-						Appoint.requestAppt("Steven", "James", 2000, 7, 9, 1, 2);
-						Appoint.requestAppt("gavin", "Bill", 2000, 7, 10, 1, 2);
-						Appoint.requestAppt("gavin", "Jannet", 2000, 7, 11, 1, 2);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
