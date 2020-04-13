@@ -1,4 +1,5 @@
 package front;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -19,6 +20,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import back.Appoint;
 import back.Doctor;
 import back.Main;
+import back.Patient;
 import back.Person;
 
 import javax.swing.JTable;
@@ -38,8 +40,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class newSched extends JPanel {
-	private String doc, date;
+public class PatViewAppt extends JPanel implements ActionListener{
+	private String user;
 	
 	/**
 	 * 
@@ -52,11 +54,9 @@ public class newSched extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public newSched(String user, String date) {
-		if(Doctor.isDoc(user)) doc = user;
-		this.date = date;
-		
-		 verticalBox = Box.createVerticalBox();
+	public PatViewAppt(String user) {
+		this.user = user;
+		verticalBox = Box.createVerticalBox();
 		
 		
 		JScrollPane scrollPane = new JScrollPane(verticalBox);
@@ -64,19 +64,12 @@ public class newSched extends JPanel {
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		try {
-			appoints =  Doctor.generateConfAppointments(doc);
+			appoints =  Patient.generateAppointments(user);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			System.out.println("null");
+			e.printStackTrace();
 		}
-//		
-//		for(Appoint appt:appoints) {
-//				/*Appoint hello = new Appoint("Firoz","gavin guinn", 	2020, 10, 12, 11, 12);
-//				Appoint goodby = new Appoint("Firoz", "ravin tuinn", 	2020, 13, 2, 11, 12);
-//				appoints.add(hello);
-//				appoints.add(goodby);*/
-//				appoints.add(appt);
-//		}
+
 
 		refreshList();
 		
@@ -87,12 +80,11 @@ public class newSched extends JPanel {
 		JLabel lblNewLabel = new JLabel("View Confirmed Appointments");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		
-		JButton btnNewButton = new JButton("Return to Schedule");
+		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Main.window.setScreen(Main.Screen.CALEN, user, null);
+				Main.window.setScreen(Main.Screen.PPAGE, user, null);
 
 			}
 		});
@@ -143,18 +135,21 @@ public class newSched extends JPanel {
 		vbox.setAlignmentX(LEFT_ALIGNMENT);
 		vbox.setMinimumSize(new Dimension(100, 50) );
 		interHbox.setBorder(BorderFactory.createLineBorder(Color.black));
-		JLabel nm = new JLabel("Name: "+a.getpName());
+		JLabel nm = new JLabel("Doctor: "+a.getdName());
 		JLabel date = new JLabel ( "Date: " +a.getMonth() + "/"+ a.getDay()+ "/"+a.getYear());
 		JLabel time  = new JLabel("From: " + a.getsHour() + " to " +a.geteHour());
-	
 		
-
+		
+		
+		
 		
 		vbox.add(Box.createRigidArea(new Dimension(0,5)));
 		vbox.add(nm);
 		
 		vbox.add(date);
 		vbox.add(time);
+		
+		
 		vbox.add(Box.createRigidArea(new Dimension(0,5)));
 		
 
@@ -166,16 +161,36 @@ public class newSched extends JPanel {
 		for (Component c : verticalBox.getComponents()) {
 			verticalBox.remove(c);
 		}
-		if (appoints != null) {
-			for(int i= 0; i < appoints.size(); i++) {
-				System.out.println("This date: " + date + " Saved date:" +appoints.get(i).getDate());
-				if(appoints.get(i).getDate().equals(date)) {
-					makeBox(appoints.get(i), i );
-				}
-				
-			}
+		for(int i= 0; i < appoints.size(); i++) {
+			makeBox(appoints.get(i), i );
 		}
 	}
 	
-
+	public void actionPerformed(ActionEvent e) {
+		
+		String cmd =  e.getActionCommand().split(",")[0];
+		int ind =  Integer.parseInt(e.getActionCommand().split(",")[1]);	
+		
+		if(cmd.equals("d")) { //decline appointment
+			 appoints.remove(ind);
+		}
+		
+		else if(cmd.equals("a")) { //Accept
+			Appoint a = appoints.get(ind);
+			try {
+				Appoint.confirmAppt(a.getdName(), a.getpName(), a.getYear(), a.getMonth(), a.getDay(), a.getsHour(), a.geteHour());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			appoints.remove(ind);
+			//something
+		}
+			
+	   
+	    refreshList();
+		this.validate();
+		this.repaint();
+	    
+	} 
 }

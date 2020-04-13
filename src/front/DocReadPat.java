@@ -9,17 +9,20 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import back.Main;
+import back.Patient;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ReadPatDat extends JPanel {
+public class DocReadPat extends JPanel {
 	JLabel name;
 	JLabel heightWeight;
 	JLabel birth;
 	JLabel sex;
 	JLabel cond;
+	String user;
+	Patient p;
 	
 	/**
 	 * 
@@ -29,8 +32,9 @@ public class ReadPatDat extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ReadPatDat() {
-		
+	public DocReadPat(String user, Patient p) {
+		this.p = p;
+		this.user = user;
 		
 		JLabel lblNewLabel = new JLabel("Patient information:");
 		heightWeight = new JLabel();
@@ -44,12 +48,13 @@ public class ReadPatDat extends JPanel {
 		cond = new JLabel();
 		cond.setText("Blank");
 		
-		writeDat("gavin", "guinn", 200, 90, "06/09/1998", true, "big enegergy");
+		writeDat(p);
+		
 		
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.window.setScreen(Main.Screen.DPAGE, null, null);
+				Main.window.setScreen(Main.Screen.PLIS, user, null);
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -106,13 +111,13 @@ public class ReadPatDat extends JPanel {
 		
 	}
 	
-	public void writeDat(String first, String last, int height, int weight, String birthdate, Boolean male, String conditions) {
-		name.setText("Name: " + first + " " + last);
-		heightWeight.setText("Height: " + Integer.toString(height) + " Weight: " + Integer.toString(weight));
-		birth.setText("birthdate: " + birthdate);
-		if(male) sex.setText("Male");
-		else sex.setText("Female");
-		cond.setText(conditions);
+	public void writeDat(Patient p) {
+		name.setText("Name: " + p.getName());
+		heightWeight.setText("Height: " + Integer.toString(p.getHeight()) + " Weight: " + Double.toString(p.getWeight()));
+		birth.setText("birthdate: " + p.getBirthday());
+		sex.setText(p.getSex());
+	
+		cond.setText(p.getPreExistCon());
 		
 		
 	}

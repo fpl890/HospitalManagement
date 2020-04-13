@@ -93,10 +93,12 @@ public class Login extends JPanel implements ActionListener {
 			try {
 				//BufferedWriter writer = new BufferedWriter(new FileWriter("record.txt", true));
 				if(Person.validUser(txtUsername.getText(), txtPassword.getText())) {
+					
 					currentUser = txtUsername.getText();
 					if(Doctor.isDoc(txtUsername.getText())) Main.window.setScreen(Main.Screen.DPAGE, txtUsername.getText(), null);
 					else Main.window.setScreen(Main.Screen.PPAGE, txtUsername.getText(), null);
-					
+					txtUsername.setText("");
+					txtPassword.setText("");
 				}else {
 					JOptionPane.showMessageDialog(this,
 				            "Invalid password. Try again.",

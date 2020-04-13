@@ -2,11 +2,14 @@ package back;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 
 /**
@@ -33,6 +36,7 @@ public class Appoint {
 	 * @param eHour
 	 */
 	public Appoint(String dName, String pName, int year, int month, int day, int sHour, int eHour){
+	
 		this.setdName(dName);
 		this.setpName(pName);
 		this.setYear(year);
@@ -106,6 +110,48 @@ public class Appoint {
 		return month+"/"+day+"/"+year;
 	}
 	
+	//https://stackoverflow.com/questions/1377279/find-a-line-in-a-file-and-remove-it
+	public static void rmAppt(Appoint a) throws Exception {
+		File inputFile = new File("./dat/appointments.txt");
+		File tempFile = new File("./dat/tempFile.txt");
+
+		BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+		BlockingQueue<String> blockingQueue = new LinkedBlockingDeque<>(4);
+		
+		
+		ArrayList<String> remove = new ArrayList<String>();
+		remove.add(a.getdName());
+		remove.add(a.getpName());
+		remove.add(a.getsHour()+ " to "+ a.geteHour());
+		String currentLine = reader.readLine();
+		//System.out.println(currentLine);
+		while(currentLine != null) {
+			while(currentLine != null &&blockingQueue.offer(currentLine)) {
+				currentLine = reader.readLine();
+			}
+			
+		//	for(String s : remove) {
+			//	System.out.println(s);
+		//	}
+			if(!blockingQueue.containsAll(remove)) {
+				
+				while(blockingQueue.peek() != null) {
+					writer.write(blockingQueue.poll() + System.getProperty("line.separator"));
+				//	System.out.println("writing");
+				}
+			}
+		    // trim newline when comparing with lineToRemove
+		   
+		   
+		   // writer.write(currentLine + System.getProperty("line.separator"));
+		}
+		writer.close(); 
+		reader.close(); 
+		inputFile.delete();
+		tempFile.renameTo(inputFile);
+		
+	}
 	
 	/**
 	 * @param dName

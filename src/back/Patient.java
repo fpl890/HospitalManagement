@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Patient extends Person {
 
-	String id, name, birthday, sex, preExistCon;
+	String id, name, birthday, sex, preExistCon, docName;
 	int height;
 	double weight;
 
@@ -172,7 +172,7 @@ public class Patient extends Person {
 		String patientID = reader.readLine();
 		
 		while(patientID != null) {
-			//System.out.println(patientID);
+			
 			if (patientID.equals(id)) {
 				reader.readLine();
 				String s = reader.readLine();
@@ -215,7 +215,7 @@ public class Patient extends Person {
 	 * @return
 	 * @throws IOException
 	 */
-	public static String getPatientHeight(String id) throws IOException {
+	public static int getPatientHeight(String id) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader("./dat/patientInfo.txt"));
 		String patientID = reader.readLine();
 		
@@ -226,13 +226,13 @@ public class Patient extends Person {
 				reader.readLine();
 				String s = reader.readLine();
 				reader.close();
-				return s;
+				return Integer.parseInt(s);
 			}
 			patientID = reader.readLine();
 		}
 		
 		reader.close();
-		return null;	
+		return -1;	
 	}
 	
 	/**
@@ -240,12 +240,12 @@ public class Patient extends Person {
 	 * @return
 	 * @throws IOException
 	 */
-	public static String getPatientWeight(String id) throws IOException {
+	public static Double getPatientWeight(String id) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader("./dat/patientInfo.txt"));
 		String patientID = reader.readLine();
 		
 		while(patientID != null) {
-			System.out.println(patientID);
+			
 			if (patientID.equals(id)) {
 				reader.readLine();
 				reader.readLine();
@@ -253,7 +253,7 @@ public class Patient extends Person {
 				reader.readLine();
 				String s = reader.readLine();
 				reader.close();
-				return s;
+				return Double.parseDouble(s);
 			}
 			patientID = reader.readLine();
 		}
@@ -302,5 +302,72 @@ public class Patient extends Person {
 		return null;	
 	}
 	
+	public static String getID(String name) throws IOException {
+		BufferedReader reader = new BufferedReader(new FileReader("./dat/patientInfo.txt"));
+		String lastLine= reader.readLine();
+		String patientName = reader.readLine();
+		
+		while(patientName != null) {
+			if (patientName.equals(name)) {
+		
+				
+				reader.close();
+				return lastLine;
+			}
+			lastLine = patientName;
+			patientName = reader.readLine();
+		}
+		
+		reader.close();
+		return null;	
+		
+	}
+	
+	public static Patient lookupPat(String name) throws IOException {
+		
+		try {
+			String id= getID(name);
+			if(id==null) return null;
+			return new Patient(id,  getPatientName(id), getPatientBirthday(id), getPatientSex(id), getPatientPEC(id), getPatientHeight(id), getPatientWeight(id));
+		} catch (Exception e) {
+	
+			e.printStackTrace();
+		}
+		return null;
+		
+		
+	}
+	
+	
 
+
+
+	
+
+	public static ArrayList<Appoint> generateAppointments(String name) throws IOException{
+		BufferedReader reader = new BufferedReader(new FileReader("./dat/confAppointments.txt"));
+		ArrayList <Appoint> appts = new ArrayList<Appoint>();
+		String line = reader.readLine();
+		String last = "";
+		while (line!=null) {
+			
+			if (line!=null && line.equals(name)) {
+				String doc = last;
+				String patient = line;
+				String[] date = reader.readLine().split("/");
+				int  month = Integer.parseInt(date[0]);
+				int day = Integer.parseInt(date[1]);
+				int year = Integer.parseInt(date [2]);
+				String[] time = reader.readLine().split(" ");
+				int sHour = Integer.parseInt(time[0]);
+				int eHour = Integer.parseInt(time[2]);
+				Appoint appt = new Appoint(doc, patient, year, month, day, sHour, eHour);
+				appts.add(appt);
+			}
+			last = line;
+			line = reader.readLine();
+		}
+		reader.close();
+		return appts;
+	}
 }

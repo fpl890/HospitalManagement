@@ -128,7 +128,7 @@ class TestPerson {
 			sicBoy.writeInfo();
 
 			if(!Patient.getPatientBirthday("1024").equals("06/09/1998")) correct = false;
-			if(!Patient.getPatientHeight("1024").equals("200")) correct = false;
+			if(!(Patient.getPatientHeight("1024")==200)) correct = false;
 			if(!Patient.getPatientName("1024").equals("TestAll")) correct = false;
 			if(!Patient.getPatientSex("1024").equals("male")) correct = false;
 			sicBoy.writeInfo();

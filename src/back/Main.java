@@ -18,15 +18,11 @@ public class Main {
 	
 	//Total JPanels in app 
 	private JPanel login = new Login();
-	private JPanel register = new Register();	
-	private JPanel patPage ;
-	private JPanel docPage ;	
-	private JPanel patForm =  new patientform();
-	private JPanel patCal;
-	private JPanel patReq;
+	
+
 			
 	
-	private JPanel readPat = new ReadPatDat();
+
 	public static Main window = new Main();
 	private JFrame frame;
 	private JPanel current = login;
@@ -35,7 +31,7 @@ public class Main {
 	 * This enum allows encapsulation of all JPanels within Main
 	 */
 	public enum Screen{
-		CALEN, LOGIN, SCHED, REGIS, REQAP, PATDA, PPAGE, DPAGE, PFORM, PCAL, PREQ
+		CALEN, LOGIN, SCHED, REGIS, REQAP, PATDA, PPAGE, DPAGE, PFORM, PCAL, PREQ, PLIS, PVIEW
 	}
 	
 	/**
@@ -48,22 +44,10 @@ public class Main {
 				try {	
 					window = new Main();
 					window.frame.setVisible(true);
-					/*
-					try {
-						Appoint.requestAppt("gavin", "John", 2020, 4, 9, 1, 2);
-						Appoint.requestAppt("Asad", "Jacky", 2000, 7, 5, 1, 2);
-						Appoint.requestAppt("gavin", "Emily", 2000, 7, 6, 1, 2);
-						Appoint.requestAppt("Firoz", "Samantha", 2000, 7, 7, 1, 2);
-						Appoint.requestAppt("Steven", "Sarah", 2000, 7, 8, 1, 2);
-						Appoint.requestAppt("Steven", "James", 2000, 7, 9, 1, 2);
-						Appoint.requestAppt("gavin", "Bill", 2000, 7, 10, 1, 2);
-						Appoint.requestAppt("gavin", "Jannet", 2000, 7, 11, 1, 2);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
+					
+	
 				} catch (Exception e) {
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 		});
@@ -87,7 +71,7 @@ public class Main {
 	 */
 
 	
-	public void setScreen(Screen screen, String user, String flag) {
+	public void setScreen(Screen screen, String user, Object flag) {
 		frame.remove(current);
 		current = getPanel(screen, user, flag);
 		frame.setContentPane(current);
@@ -101,37 +85,46 @@ public class Main {
 	 * @param srn: member of the enum Screen
 	 * @return appropriate JPanel
 	 */
-	private JPanel getPanel(Screen srn, String user, String flag) {
+	private JPanel getPanel(Screen srn, String user, Object flag) {
 		switch (srn) {
 		case CALEN:
-			JPanel calen = new SimpleCalendar(user, flag);
+			
+			JPanel calen = new DocCalendar(user, (String)flag);
 			return calen;	
 		case LOGIN:
 			return login;
 		case SCHED:
-			JPanel sched = new newSched(user, flag);
+			JPanel sched = new DocSched(user, (String)flag);
 			return sched;
 		case REGIS:
-			return register;
+			//JPanel register = ;	
+			return new Register();
 		case REQAP:
-			JPanel reqApp = new ReqAppoint(user);
+			JPanel reqApp = new DocConfirmApt(user);
 			return reqApp;
 		case PATDA:
+			JPanel readPat = new DocReadPat(user, (Patient)flag);
 			return readPat;
 		case DPAGE:
-			return new doctorPage(user);
+			return new DocPage(user);
 		case PPAGE:
-			JPanel patPage = new patientPage(user);	
+			JPanel patPage = new PatPage(user);	
 			return patPage;
 		case PFORM:
+			JPanel patForm = new PatForm(user);
 			return patForm;
 		case PCAL:
-			JPanel patCalen = new PatientCalendar(user, flag);
+			JPanel patCalen = new PatCal(user, (String)flag);
 			return patCalen;
 		case PREQ:
-			JPanel patRequest = new PatRequestApt(user, flag);
+			JPanel patRequest = new PatReqApt(user, (String)flag);
 			return patRequest;
-			
+		case PLIS:
+			JPanel patientList = new DocListPats(user);
+			return patientList;
+		case PVIEW:
+			return new PatViewAppt(user);
+					
 		default:
 			throw new IllegalArgumentException();
 		}

@@ -18,6 +18,7 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import back.Appoint;
 import back.Doctor;
+import back.Main;
 import back.Person;
 
 import javax.swing.JTable;
@@ -37,8 +38,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ReqAppoint extends JPanel implements ActionListener{
-	private String doc;
+public class DocSched extends JPanel {
+	private String doc, date;
 	
 	/**
 	 * 
@@ -51,8 +52,9 @@ public class ReqAppoint extends JPanel implements ActionListener{
 	/**
 	 * Create the panel.
 	 */
-	public ReqAppoint(String user) {
+	public DocSched(String user, String date) {
 		if(Doctor.isDoc(user)) doc = user;
+		this.date = date;
 		
 		 verticalBox = Box.createVerticalBox();
 		
@@ -62,10 +64,10 @@ public class ReqAppoint extends JPanel implements ActionListener{
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		try {
-			appoints =  Doctor.generateAppointments(doc);
+			appoints =  Doctor.generateConfAppointments(doc);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//System.out.println("null");
 		}
 //		
 //		for(Appoint appt:appoints) {
@@ -82,10 +84,18 @@ public class ReqAppoint extends JPanel implements ActionListener{
 	
 		scrollPane.setBounds(500, 310, -364, -303);
 		
-		JLabel lblNewLabel = new JLabel("View Requested Appointments");
+		JLabel lblNewLabel = new JLabel("View Confirmed Appointments");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		JButton btnNewButton = new JButton("Back");
+		
+		JButton btnNewButton = new JButton("Return to Schedule");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				Main.window.setScreen(Main.Screen.CALEN, user, null);
+
+			}
+		});
 		
 		
 		
@@ -136,21 +146,15 @@ public class ReqAppoint extends JPanel implements ActionListener{
 		JLabel nm = new JLabel("Name: "+a.getpName());
 		JLabel date = new JLabel ( "Date: " +a.getMonth() + "/"+ a.getDay()+ "/"+a.getYear());
 		JLabel time  = new JLabel("From: " + a.getsHour() + " to " +a.geteHour());
-		JButton decline  = new JButton("Decline");
-		decline.setActionCommand("d,"+Integer.toString(ind));
-		decline.addActionListener(this);
+	
 		
-		JButton accept  = new JButton("accept");
-		accept.setActionCommand("a,"+Integer.toString(ind));
-		accept.addActionListener(this);
+
 		
 		vbox.add(Box.createRigidArea(new Dimension(0,5)));
 		vbox.add(nm);
 		
 		vbox.add(date);
 		vbox.add(time);
-		vbox.add(decline);
-		vbox.add(accept);
 		vbox.add(Box.createRigidArea(new Dimension(0,5)));
 		
 
@@ -162,36 +166,16 @@ public class ReqAppoint extends JPanel implements ActionListener{
 		for (Component c : verticalBox.getComponents()) {
 			verticalBox.remove(c);
 		}
-		for(int i= 0; i < appoints.size(); i++) {
-			makeBox(appoints.get(i), i );
+		if (appoints != null) {
+			for(int i= 0; i < appoints.size(); i++) {
+				//System.out.println("This date: " + date + " Saved date:" +appoints.get(i).getDate());
+				if(appoints.get(i).getDate().equals(date)) {
+					makeBox(appoints.get(i), i );
+				}
+				
+			}
 		}
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		
-		String cmd =  e.getActionCommand().split(",")[0];
-		int ind =  Integer.parseInt(e.getActionCommand().split(",")[1]);	
-		
-		if(cmd.equals("d")) { //decline appointment
-			 appoints.remove(ind);
-		}
-		
-		else if(cmd.equals("a")) { //Accept
-			Appoint a = appoints.get(ind);
-			try {
-				Appoint.confirmAppt(a.getdName(), a.getpName(), a.getYear(), a.getMonth(), a.getDay(), a.getsHour(), a.geteHour());
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			appoints.remove(ind);
-			//something
-		}
-			
-	   
-	    refreshList();
-		this.validate();
-		this.repaint();
-	    
-	} 
+
 }

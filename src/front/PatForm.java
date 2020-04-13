@@ -25,9 +25,9 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class patientform extends JPanel implements ActionListener{
+public class PatForm extends JPanel implements ActionListener{
 
-	
+	private String user; 
 	private JTextField tfFirstName;
 	private JTextField tfHeight;
 	private JTextField tfLastName;
@@ -48,7 +48,8 @@ public class patientform extends JPanel implements ActionListener{
 	/**
 	 * Create the application.
 	 */
-	public patientform() {
+	public PatForm(String us) {
+		user =us;
 		initialize();
 	}
 
@@ -214,7 +215,7 @@ public class patientform extends JPanel implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Patient.writeInfo(new String(generateID()),
-							new String(tfFirstName.getText() + " " + tfLastName.getText()),
+							user,
 							new String(tfBirthday.getText()), new String(obtainSex()),
 							new Integer(Integer.parseInt(tfHeight.getText())),
 							new Double(Double.parseDouble(tfWeight.getText())), new String(tpConditions.getText()));

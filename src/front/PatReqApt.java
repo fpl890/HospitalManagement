@@ -31,7 +31,7 @@ import javax.swing.JFrame;
  * @authors Firoz Lakhani, Asad Choudary
  *
  */
-public class PatRequestApt extends JPanel implements ActionListener{
+public class PatReqApt extends JPanel implements ActionListener{
 	
 	String user = null;
 	String date = null;
@@ -52,7 +52,7 @@ public class PatRequestApt extends JPanel implements ActionListener{
 	/**
 	 * Create the panel.
 	 */
-	public PatRequestApt(String user, String date) {
+	public PatReqApt(String user, String date) {
 		this.user = user;
 		this.date = date;
 		

@@ -11,14 +11,14 @@ import javax.swing.JPanel;
 
 import back.Main;
 
-public class patientPage extends JPanel implements ActionListener{
+public class PatPage extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private String user;
 	/**
 	 * Create the application.
 	 */
-	public patientPage(String user) {
+	public PatPage(String user) {
 		this.user = user;
 		initialize();
 	}
@@ -39,10 +39,14 @@ public class patientPage extends JPanel implements ActionListener{
 		JButton btnNewButton_1 = new JButton("View requested");
 		btnNewButton_1.setBounds(243, 166, 150, 61);
 		this.add(btnNewButton_1);
+		btnNewButton_1.setActionCommand("view");
+		btnNewButton_1.addActionListener(this);
 		
 		JButton btnNewButton_2 = new JButton("Back to login");
 		btnNewButton_2.setBounds(0, 238, 434, 23);
 		this.add(btnNewButton_2);
+		btnNewButton_2.setActionCommand("login");
+		btnNewButton_2.addActionListener(this);
 		
 		
 		JLabel lblNewLabel = new JLabel("Patient Home Screen");
@@ -61,6 +65,13 @@ public class patientPage extends JPanel implements ActionListener{
 		String cmd =  e.getActionCommand();
 		if(cmd.equals("sched")){
 			Main.window.setScreen(Main.Screen.PCAL, this.user, null);
+		}
+		else if(cmd.equals("login")) {
+			Main.window.setScreen(Main.Screen.LOGIN, null, null);
+		}
+		
+		else if(cmd.equals("view")) {
+			Main.window.setScreen(Main.Screen.PVIEW, user, null);
 		}
 		
 	}

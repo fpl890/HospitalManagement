@@ -28,11 +28,13 @@ public class Register extends JPanel {
 	private JPasswordField passwordField;
 	private JRadioButton patRad;
 	private JRadioButton docRad;
+	private String user;
 
 	/**
 	 * Create the panel.
 	 */
 	public Register() {
+		
 		setBackground(SystemColor.control);
 		setLayout(null);
 		
@@ -71,7 +73,7 @@ public class Register extends JPanel {
 						Main.window.setScreen(Main.Screen.LOGIN, null, null);
 					}
 					else if (patRad.isSelected()) {
-						Main.window.setScreen(Main.Screen.PFORM, null, null);
+						Main.window.setScreen(Main.Screen.PFORM, textField.getText(), null);
 					}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block

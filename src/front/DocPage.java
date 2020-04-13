@@ -18,7 +18,7 @@ import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class doctorPage extends JPanel implements ActionListener{
+public class DocPage extends JPanel implements ActionListener{
 	String doc;
 	/**
 	 * 
@@ -32,7 +32,7 @@ public class doctorPage extends JPanel implements ActionListener{
 	/**
 	 * Create the application.
 	 */
-	public doctorPage(String user) {
+	public DocPage(String user) {
 		if(Doctor.isDoc(user)) doc = user ;
 		
 		initialize();
@@ -67,6 +67,7 @@ public class doctorPage extends JPanel implements ActionListener{
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Main.window.setScreen(Main.Screen.PLIS, doc, null);
 			}
 		});
 		button_1.setBounds(245, 127, 179, 23);
@@ -75,6 +76,7 @@ public class doctorPage extends JPanel implements ActionListener{
 		JButton btnNewButton_1 = new JButton("Back to login");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Main.window.setScreen(Main.Screen.LOGIN, null, null);
 			}
 		});
 		btnNewButton_1.setBounds(293, 227, 131, 23);

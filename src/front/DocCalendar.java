@@ -10,10 +10,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class PatientCalendar extends JPanel{
+public class DocCalendar extends JPanel{
 	private static final long serialVersionUID = 1L;
 	JLabel lblMonth, lblYear;
-     JButton btnPrev, btnNext;
+     JButton btnPrev, btnNext, btnRet;
      JTable tblCalendar;
      JComboBox<String> cmbYear;
      JFrame frmMain;
@@ -27,7 +27,7 @@ public class PatientCalendar extends JPanel{
      String user = null;
     
     
-    public PatientCalendar (String user, String flag){
+    public DocCalendar (String user, String flag){
     	this.user = user;
   
         try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
@@ -51,6 +51,7 @@ public class PatientCalendar extends JPanel{
         cmbYear = new JComboBox<String>();
         btnPrev = new JButton ("<<");
         btnNext = new JButton (">>");
+        btnRet = new JButton("Back");
         
         mtblCalendar = new DefaultTableModel(){
 			private static final long serialVersionUID = 1L;
@@ -72,7 +73,7 @@ public class PatientCalendar extends JPanel{
                int day = row * 7 + (col + 1) - indFirstX;
                
                if(day<=numDays && day >= 1) {
-            	   Main.window.setScreen(Main.Screen.PREQ, user,(currentMonth+1)+"/"+day+"/"+currentYear);	
+            	   Main.window.setScreen(Main.Screen.SCHED, user,(currentMonth+1)+"/"+day+"/"+currentYear);	
                }
                
                 
@@ -86,14 +87,16 @@ public class PatientCalendar extends JPanel{
         btnPrev.addActionListener(new btnPrev_Action());
         btnNext.addActionListener(new btnNext_Action());
         cmbYear.addActionListener(new cmbYear_Action());
-        
+        btnRet.addActionListener(new btnRet_Action() );
        
-     
+        this.add(btnRet);
+   
         this.add(lblMonth);
         this.add(lblYear);
         this.add(cmbYear);
         this.add(btnPrev);
         this.add(btnNext);
+        
         this.add(stblCalendar);
         
     
@@ -246,7 +249,15 @@ public class PatientCalendar extends JPanel{
             }
         }
     }
+    class btnRet_Action implements ActionListener{
+         public void actionPerformed (ActionEvent e){
+             if (cmbYear.getSelectedItem() != null){
+            	 Main.window.setScreen(Main.Screen.DPAGE, user, null);
+             }
+         }
+     }
+     
 }
 
 
-//Barebone model form the javahungry.blogspot.com
+//Barebone model from  javahungry.blogspot.com
