@@ -11,8 +11,8 @@ import front.*;
 
 /**
  * The main method both launches the app and handles switching screens within the app
+ * Cleaned by Firoz Lakhani
  * @author Gavin
- *
  */
 public class Main {
 	
@@ -44,8 +44,6 @@ public class Main {
 				try {	
 					window = new Main();
 					window.frame.setVisible(true);
-					
-	
 				} catch (Exception e) {
 					//e.printStackTrace();
 				}

@@ -3,7 +3,6 @@ package back;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -44,13 +43,11 @@ public class Appoint {
 		this.setDay(day);
 		this.setsHour(sHour);
 		this.seteHour(eHour); 
-		
-		
-	
-			
-				
 	}
 
+	
+	
+	//getters and setters
 	public String getdName() {
 		return this.dName;
 	}
@@ -154,14 +151,14 @@ public class Appoint {
 	}
 	
 	/**
-	 * @param dName
-	 * @param pName
-	 * @param year
-	 * @param month
-	 * @param day
-	 * @param sHour
-	 * @param eHour
-	 * Appends the patient request to the doctor list of requested appointments
+	 * @param dName - name of the doctor
+	 * @param pName - name of the patient
+	 * @param year - year of the appointment
+	 * @param month - month of the appointment
+	 * @param day - day of the appointment
+	 * @param sHour - start hour
+	 * @param eHour - end hour
+	 * Purpose: Appends the patient request to the doctor list of requested appointments
 	 */
 	public static void requestAppt(String dName,String pName, int year, int month, int day, int sHour, int eHour) throws IOException {
 			
@@ -175,14 +172,14 @@ public class Appoint {
 	}
 	
 	/**
-	 * @param dName
-	 * @param pName
-	 * @param year
-	 * @param month
-	 * @param day
-	 * @param sHour
-	 * @param eHour
-	 * Appends the patient request to the doctor list of confirmed appointments
+	 * @param dName - name of the doctor
+	 * @param pName - name of the patient
+	 * @param year - year of the appointment
+	 * @param month - month of the appointment
+	 * @param day - day of the appointment
+	 * @param sHour - start hour
+	 * @param eHour - end hour
+	 * Purpose: Appends the patient request to the doctor list of confirmed appointments
 	 */
 	public static void confirmAppt(String dName,String pName, int year, int month, int day, int sHour, int eHour) throws IOException {
 		

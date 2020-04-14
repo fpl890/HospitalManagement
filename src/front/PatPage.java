@@ -10,13 +10,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import back.Main;
-
+/**
+ * Cleaned by Firoz Lakhani
+ * @author 
+ */
 public class PatPage extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private String user;
 	/**
 	 * Create the application.
+	 * @param user - name of current user 
 	 */
 	public PatPage(String user) {
 		this.user = user;
@@ -61,6 +65,7 @@ public class PatPage extends JPanel implements ActionListener{
 		this.add(lblNewLabel_1);
 	}
 	
+	 
 	public void actionPerformed(ActionEvent e) {
 		String cmd =  e.getActionCommand();
 		if(cmd.equals("sched")){

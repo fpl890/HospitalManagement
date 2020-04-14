@@ -3,13 +3,14 @@ import java.io.*;
 
 
 /**
- * @author 
- *
+ * @author Firoz Lakhani
+ * Cleaned by Firoz Lakhani
  */
 public class Person {
 
 
 	/**
+	 * Function saves the username and password of the user to a file
 	 * @param name
 	 * @param password
 	 * @throws IOException
@@ -23,21 +24,8 @@ public class Person {
 	}
 	
 
-
-
-	/** Is this function used??
-	 * @return
-	 * @throws IOException
-	 */
-	public static String fetchName() throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader("./dat/record.txt"));
-		String name = reader.readLine();
-		reader.close();
-		return name;
-	}
-
-
 	/**
+	 * Function fetches the password if a particular user 
 	 * @param name
 	 * @return
 	 * @throws IOException
@@ -62,6 +50,7 @@ public class Person {
 
 
 	/**
+	 * Function checks if the user login attempt is valid
 	 * @param name
 	 * @param password
 	 * @return
@@ -95,32 +84,5 @@ public class Person {
 		
 	}
 
-//	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
-//		try {
-//
-//			writeInfo("Firoz", "password");
-//			writeInfo("Asad", "password");
-//			writeInfo("Gavin", "password");
-//			writeInfo("Quanzhi", "password");
-//
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//
-//			System.out.println(fetchName());
-//			System.out.println(fetchPassword("Firoz"));
-//			System.out.println(fetchPassword("Gavin"));
-//			System.out.println(validUser("Sohaib","fpl786"));
-//
-//
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//	}
 
 }

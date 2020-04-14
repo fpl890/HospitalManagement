@@ -20,6 +20,7 @@ import back.Person;
 // https://docs.oracle.com/javase/tutorial/displayCode.html?code=https://docs.oracle.com/javase/tutorial/uiswing/examples/components/ButtonDemoProject/src/components/ButtonDemo.java
 
 /**
+ * Cleaned by Firoz Lakhani
  * @author Gavin
  *
  */
@@ -84,9 +85,6 @@ public class Login extends JPanel implements ActionListener {
 	
 	
 
-	/**
-	 *
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if("enable".equals(e.getActionCommand())) {
