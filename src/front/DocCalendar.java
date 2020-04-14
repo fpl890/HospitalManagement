@@ -1,6 +1,5 @@
 package front;
 import javax.swing.*;
-//import javax.swing.event.*;
 import javax.swing.table.*;
 
 import back.Main;
@@ -10,9 +9,16 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+
+
+/**
+ * 
+ * This class is a simple calendar to display current date and able to let doctors click in and check their patients' appointments.
+ */
+
 public class DocCalendar extends JPanel{
-	private static final long serialVersionUID = 1L;
-	JLabel lblMonth, lblYear;
+     private static final long serialVersionUID = 1L;
+     JLabel lblMonth, lblYear;
      JButton btnPrev, btnNext, btnRet;
      JTable tblCalendar;
      JComboBox<String> cmbYear;
@@ -26,7 +32,11 @@ public class DocCalendar extends JPanel{
      int numDays;
      String user = null;
     
-    
+    /**
+     * Purpose: Create a Calendar which contains day, month, years, and change button for months and years.
+     * @param user - current user logged in
+     * @param flag - flag requested
+     */
     public DocCalendar (String user, String flag){
     	this.user = user;
   
@@ -37,15 +47,6 @@ public class DocCalendar extends JPanel{
         catch (UnsupportedLookAndFeelException e) {}
         
         
-
- //       frmMain = new JFrame ("Simple Calander");  
-//        
-//        frmMain.setSize(330, 375); 
-//        pane = frmMain.getContentPane(); 
- //       pane.setLayout(null); 
- //       frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        
-        //controling
         lblMonth = new JLabel ("January");
         lblYear = new JLabel ("Change year:");
         cmbYear = new JComboBox<String>();
@@ -148,8 +149,13 @@ public class DocCalendar extends JPanel{
         
         
         refreshCalendar (realMonth, realYear); 
-    }
+        }
     
+    /**
+     * Purpose: To let the calendar refresh when user change months and display correct numbers of days.
+     * @param month - month to display, number to string
+     * @param year - current year on the calendar
+     */
     public void refreshCalendar(int month, int year){
         
         String[] months =  {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
@@ -191,7 +197,11 @@ public class DocCalendar extends JPanel{
         
         tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
     }
-    
+    /**
+     * 
+     * This class is able to apply renders.
+     *
+     */
      class tblCalendarRenderer extends DefaultTableCellRenderer{
 
 		private static final long serialVersionUID = 1L;
@@ -260,4 +270,4 @@ public class DocCalendar extends JPanel{
 }
 
 
-//Barebone model from  javahungry.blogspot.com
+//Bare-bone model from  javahungry.blogspot.com
