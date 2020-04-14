@@ -17,11 +17,11 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 
-
-public class Register extends JPanel {
-	/**
-	 * 
+        /**
+	 * This class is able to let the users create their account as doctor or patient by creating a JFrame panel 
 	 */
+public class Register extends JPanel {
+	
 	private static final long serialVersionUID = -554404263635667542L;
 	
 	private JTextField textField;
