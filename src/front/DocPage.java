@@ -12,11 +12,12 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * This class is able to create a doctor home page to let doctors select the  they want to do by creating a JFrame panel.
+ */
 public class DocPage extends JPanel implements ActionListener{
 	String doc;
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	
 
