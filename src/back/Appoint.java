@@ -123,17 +123,17 @@ public class Appoint {
 		ArrayList<String> remove = new ArrayList<String>();
 		remove.add(a.getdName());
 		remove.add(a.getpName());
+		remove.add(a.getDate());
 		remove.add(a.getsHour()+ " to "+ a.geteHour());
 		String currentLine = reader.readLine();
-		//System.out.println(currentLine);
+		
 		while(currentLine != null) {
 			while(currentLine != null &&blockingQueue.offer(currentLine)) {
 				currentLine = reader.readLine();
+				//System.out.println(currentLine);
 			}
 			
-		//	for(String s : remove) {
-			//	System.out.println(s);
-		//	}
+
 			if(!blockingQueue.containsAll(remove)) {
 				
 				while(blockingQueue.peek() != null) {
@@ -143,7 +143,7 @@ public class Appoint {
 			}
 		    // trim newline when comparing with lineToRemove
 		   
-		   
+			currentLine = reader.readLine();
 		   // writer.write(currentLine + System.getProperty("line.separator"));
 		}
 		writer.close(); 

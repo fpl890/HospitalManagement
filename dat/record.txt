@@ -1,4 +1,8 @@
-pat
+pat1
 pass
-gavin
+pat2
+pass
+doc1
+pass
+doc2
 pass
