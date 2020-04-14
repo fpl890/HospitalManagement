@@ -231,6 +231,7 @@ public class Patient extends Person {
 			doctors.add(doctor);
 			reader.readLine();
 		}
+		reader.close();
 		return doctors;
 		
 	}

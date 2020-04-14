@@ -1,0 +1,6 @@
+pat
+pass
+doc
+pass
+pat3
+pass

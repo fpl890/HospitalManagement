@@ -1,6 +1,5 @@
 package front;
 
-import javax.swing.JFrame;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -16,6 +15,8 @@ import javax.swing.SwingConstants;
 
 public class DocReadPat extends JPanel {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String user; 
 	private Patient p;
 

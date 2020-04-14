@@ -1,38 +1,23 @@
 package front;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-import javax.swing.border.Border;
-import javax.swing.JSplitPane;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
 import back.Appoint;
 import back.Doctor;
 import back.Main;
-import back.Person;
-
-import javax.swing.JTable;
-import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.Box.Filler;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;

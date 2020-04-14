@@ -6,24 +6,17 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
 import back.Appoint;
-import back.Doctor;
 import back.Main;
 import back.Patient;
-
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JList;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 
 
 /**
@@ -32,6 +25,7 @@ import javax.swing.JFrame;
  *
  */
 public class PatReqApt extends JPanel implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	
 	String user = null;
 	String date = null;
@@ -146,6 +140,8 @@ public class PatReqApt extends JPanel implements ActionListener{
 		}
 		
 		Object[] list =  listOfDoctors.toArray();
+		
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		JComboBox doctorBox = new JComboBox(list);
 		docSelected = (String) doctorBox.getSelectedItem();
 		doctorBox.addActionListener(new ActionListener() {

@@ -28,7 +28,7 @@ public class Register extends JPanel {
 	private JPasswordField passwordField;
 	private JRadioButton patRad;
 	private JRadioButton docRad;
-	private String user;
+	
 
 	/**
 	 * Create the panel.

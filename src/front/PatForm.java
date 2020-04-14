@@ -1,8 +1,5 @@
 package front;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextPane;
@@ -12,27 +9,19 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import java.util.Date;
 import java.util.UUID;
-import java.util.Calendar;
-import javax.swing.SpinnerNumberModel;
-
 import back.Main;
 import back.Patient;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 /*
  * This class will create a JPanel which allows 
  * patients to enter their personal information
  */
 public class PatForm extends JPanel implements ActionListener{
-
+	private static final long serialVersionUID = 1L;
+	
 	private String user; 
-	private JFrame frame;
+	
 	private JTextField tfFirstName;
 	private JTextField tfHeight;
 	private JTextField tfLastName;
@@ -145,8 +134,8 @@ public class PatForm extends JPanel implements ActionListener{
 					Patient.writeInfo(new String(generateID()),
 							user,
 							new String(tfBirthday.getText()), new String(obtainSex()),
-							new Integer(Integer.parseInt(tfHeight.getText())),
-							new Double(Double.parseDouble(tfWeight.getText())), new String(tpConditions.getText()));
+							Integer.parseInt(tfHeight.getText()),
+							Double.parseDouble(tfWeight.getText()), new String(tpConditions.getText()));
 				} catch (NumberFormatException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

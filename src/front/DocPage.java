@@ -1,8 +1,5 @@
 package front;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
@@ -11,10 +8,7 @@ import javax.swing.SwingConstants;
 
 import back.Doctor;
 import back.Main;
-import back.Person;
-
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
