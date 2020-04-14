@@ -25,6 +25,10 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+/*
+ * This class will create a JPanel which allows 
+ * patients to enter their personal information
+ */
 public class PatForm extends JPanel implements ActionListener{
 
 	private String user; 
@@ -38,16 +42,18 @@ public class PatForm extends JPanel implements ActionListener{
 	JRadioButton buttonMale = new JRadioButton("Male");
 	JRadioButton buttonFemale = new JRadioButton("Female");
 
+	
 	/**
-	 * Launch the application.
+	 * 
+	 * @return A random generated id represented as a string
 	 */
-
 	public String generateID() {
 		return UUID.randomUUID().toString();
 	}
 
+	
 	/**
-	 * Create the application.
+	 * @param us the user for which the information is stored for
 	 */
 	public PatForm(String us) {
 		user =us;
@@ -151,6 +157,11 @@ public class PatForm extends JPanel implements ActionListener{
 		});
 	}
 
+
+	/**
+	 * Convert the selection of male or female radio button into a readable string
+	 * @return "female" or "male" depending on which radio button is selected
+	 */
 	public String obtainSex() {
 		if (buttonMale.isSelected() && !buttonFemale.isSelected())
 			return "male";

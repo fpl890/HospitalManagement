@@ -27,7 +27,7 @@ import javax.swing.JFrame;
 
 
 /**
- * 
+ * This class will create a JPanel which will allow patients to request appointments
  * @authors Firoz Lakhani, Asad Choudary
  *
  */
@@ -49,8 +49,10 @@ public class PatReqApt extends JPanel implements ActionListener{
 	private JLabel apt4;
 	private JLabel apt5;
 	
+
 	/**
-	 * Create the panel.
+	 * @param user = user for who we are requesting appointment
+	 * @param date = date for apointment, selected through calendar
 	 */
 	public PatReqApt(String user, String date) {
 		this.user = user;
@@ -61,6 +63,10 @@ public class PatReqApt extends JPanel implements ActionListener{
 
 
 	
+	/**
+	 * Initialize the JPanel for requesting an appointmnt
+	 * @param user = user who is requesting an appointment
+	 */
 	public void initialize(String user) {
 		
 		JLabel label = new JLabel("");
@@ -102,24 +108,19 @@ public class PatReqApt extends JPanel implements ActionListener{
 			public void mousePressed(MouseEvent e) {
 				if (rButtonApt1.isSelected()) {
 					apt1.setVisible(true);
-					//rButtonApt1.doClick();
 				}
 
 				if (rButtonApt2.isSelected()) {
 					apt2.setVisible(true);
-					//rButtonApt2.doClick();
 				}
 				if (rButtonApt3.isSelected()) {
 					apt3.setVisible(true);
-					//rButtonApt3.doClick();
 				}
 				if (rButtonApt4.isSelected()) {
 					apt4.setVisible(true);
-					//rButtonApt4.doClick();
 				}
 				if (rButtonApt5.isSelected()) {
 					apt5.setVisible(true);
-					//rButtonApt5.doClick();
 				}
 				
 				
@@ -239,6 +240,10 @@ public class PatReqApt extends JPanel implements ActionListener{
 		setLayout(groupLayout);
 	}
 	
+	/**
+	 * Method which contains all of the possible actions each button could have
+	 * 
+	 */
 	public void actionPerformed(ActionEvent e) {
 		String cmd =  e.getActionCommand();
 		int start  = 0;
